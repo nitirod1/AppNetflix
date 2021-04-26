@@ -4,6 +4,7 @@ import 'package:netflix_clone/pages/coming_soon_page.dart';
 import 'package:netflix_clone/pages/download_page.dart';
 import 'package:netflix_clone/pages/home_page.dart';
 import 'package:netflix_clone/pages/search_page.dart';
+import 'package:netflix_clone/pages/mylist_page.dart';
 
 class RootApp extends StatefulWidget {
   @override
