@@ -91,7 +91,8 @@ class _HomePageState extends State<HomePage> {
                           Text(
                             "My List",
                             style: TextStyle(fontWeight: FontWeight.w600),
-                          )
+                          ),
+
                         ],
                       ),
                       GestureDetector(
@@ -100,7 +101,7 @@ class _HomePageState extends State<HomePage> {
                               context,
                               MaterialPageRoute(
                                   builder: (_) => VideoDetailPage(
-                                        videoUrl: "assets/videos/video_1.mp4",
+                                        videoUrl: "assets/videos/video_1.mp4", //แก้เป็นวนรอยจาก api 
                                       )));
                         },
                         child: Container(
@@ -204,7 +205,7 @@ class _HomePageState extends State<HomePage> {
                       Padding(
                         padding: const EdgeInsets.only(left: 15, right: 15),
                         child: Text(
-                          "Popular on Netflix",
+                          "Popular on Netflix", 
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold),
                         ),
@@ -360,7 +361,7 @@ class _HomePageState extends State<HomePage> {
                                     builder: (_) => VideoDetailPage(
                                         videoUrl:
                                             "assets/videos/video_1.mp4")));
-                          },
+                          }, //วิดีโอหน้า home
                           child: Padding(
                             padding: EdgeInsets.only(left: 10),
                             child: Row(
@@ -445,14 +446,14 @@ class _HomePageState extends State<HomePage> {
                         Row(
                           children: [
                             Text(
-                              "Categories",
+                              "My List",
                               style: TextStyle(
                                   fontSize: 15, fontWeight: FontWeight.w500),
                             ),
                             SizedBox(
                               width: 3,
                             ),
-                            Icon(Icons.keyboard_arrow_down)
+                            //Icon(Icons.keyboard_arrow_down)
                           ],
                         )
                       ],
@@ -467,3 +468,5 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+
+

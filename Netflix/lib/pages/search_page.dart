@@ -64,7 +64,7 @@ class _SearchPageState extends State<SearchPage> {
                       context,
                       MaterialPageRoute(
                           builder: (_) => VideoDetailPage(
-                                videoUrl: searchJson[index]['video'],
+                                videoUrl: searchJson[index]['video'], //เรียก video
                               )));
                 },
                 child: Padding(
