@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/json/root_app_json.dart';
-import 'package:netflix_clone/pages/coming_soon_page.dart';
-import 'package:netflix_clone/pages/download_page.dart';
-import 'package:netflix_clone/pages/home_page.dart';
-import 'package:netflix_clone/pages/search_page.dart';
-import 'package:netflix_clone/pages/mylist_page.dart';
 
 class RootApp extends StatefulWidget {
   @override
@@ -23,49 +18,42 @@ class _RootAppState extends State<RootApp> {
     );
   }
 
-  Widget getBody() {
+  Widget getBody(){ //ทำการให้แถบข้างล่างเชื่อมโยงไปหน้าอื่น
     return IndexedStack(
-      index: activeTab,
-      children: [HomePage(), ComingSoonPage(), SearchPage(), DownloadPage()],
+      index : activeTab,
+      children : []
     );
   }
 
-  Widget getFooter() {
+  Widget getFooter() { //สร้างแถบเมนูข้างล่าง
     return Container(
       height: 80,
       decoration: BoxDecoration(color: Colors.black),
       child: Padding(
-        padding: const EdgeInsets.only(left: 20, right: 20, top: 5),
+        padding: const EdgeInsets.only(left: 20, right: 20, top:5),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: List.generate(items.length, (index) {
+          children: List.generate(items.length, (index) { //ทำการสร้างแต่ละเมนูด้านล่าง
             return GestureDetector(
-              onTap: () {
+              onTap: (){
                 setState(() {
                   activeTab = index;
                 });
+
               },
-              child: Column(
-                children: [
-                  Icon(
-                    items[index]['icon'],
-                    color: activeTab == index
-                        ? Colors.white
-                        : Colors.white.withOpacity(0.5),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    items[index]['text'],
-                    style: TextStyle(
-                        fontSize: 10,
-                        color: activeTab == index
-                            ? Colors.white
-                            : Colors.white.withOpacity(0.5)),
-                  )
-                ],
-              ),
+                          child: Column(children: [
+                Icon(
+                  items[index]["icon"],
+                  color: Colors.white,
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  items[index]["text"],
+                  style: TextStyle(color: Colors.white, fontSize: 10),
+                )
+              ]),
             );
           }),
         ),
@@ -73,3 +61,16 @@ class _RootAppState extends State<RootApp> {
     );
   }
 }
+
+/* ทำแถบข้างล่าง
+Icon(
+          items[0]["icon"],
+          color: Colors.white,
+        ),
+        SizedBox(
+          height: 5,
+        ),
+        Text(
+          items[0]["text"],
+        style: TextStyle(color: Colors.white, fontSize: 10),)
+*/
