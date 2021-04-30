@@ -1,4 +1,4 @@
-const List mylist = [
+const List listHitNetflix = [
   {"img": "assets/images/img_1.png"},
   {"img": "assets/images/img_2.png"},
   {"img": "assets/images/img_3.png"},
