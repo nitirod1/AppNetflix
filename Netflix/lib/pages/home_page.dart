@@ -177,17 +177,140 @@ class _HomePageState extends State<HomePage> {
                                 decoration: BoxDecoration(
                                   color: Colors.green,
                                   image: DecorationImage(
-                                      image: AssetImage(
-                                    "listHitNetflix[index]",
-
+                                    image: AssetImage(
+                                        listHitNetflix[index]['img']),
+                                    fit: BoxFit.cover,
                                   ),
-                                  fit: BoxFit.cover,),
                                   borderRadius: BorderRadius.circular(6),
                                 ),
                               );
                             })),
                           ),
-                        )
+                        ),
+
+
+                        SizedBox(
+                          height: 30,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 15, right: 15),
+                          child: Text("Popular list",
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold)),
+                        ),
+                        SizedBox(
+                          height: 8,
+                        ),
+                        //แถบเรื่องของหนัง "popularList"
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Row(
+                                children:
+                                    List.generate(popularList.length, (index) {
+                              return Container(
+                                margin: EdgeInsets.only(right: 8),
+                                width: 110,
+                                height: 160,
+                                decoration: BoxDecoration(
+                                  color: Colors.green,
+                                  image: DecorationImage(
+                                    image:
+                                        AssetImage(popularList[index]['img']),
+                                    fit: BoxFit.cover,
+                                  ),
+                                  borderRadius: BorderRadius.circular(6),
+                                ),
+                              );
+                            })),
+                          ),
+                        ),
+
+                        SizedBox(
+                          height: 30,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 15, right: 15),
+                          child: Text("Training Now",
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold)),
+                        ),
+                        SizedBox(
+                          height: 8,
+                        ),
+                        //แถบเรื่องของหนัง "trendingList"
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Row(
+                                children:
+                                    List.generate(trendingList.length, (index) {
+                              return Container(
+                                margin: EdgeInsets.only(right: 8),
+                                width: 110,
+                                height: 160,
+                                decoration: BoxDecoration(
+                                  color: Colors.green,
+                                  image: DecorationImage(
+                                    image:
+                                        AssetImage(trendingList[index]['img']),
+                                    fit: BoxFit.cover,
+                                  ),
+                                  borderRadius: BorderRadius.circular(6),
+                                ),
+                              );
+                            })),
+                          ),
+                        ),
+
+                        SizedBox(
+                          height: 30,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 15, right: 15),
+                          child: Text("Netflix Original",
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold)),
+                        ),
+                        SizedBox(
+                          height: 8,
+                        ),
+                        //แถบเรื่องของหนัง "originalList"
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Row(
+                                children:
+                                    List.generate(originalList.length, (index) {
+                              return Container(
+                                margin: EdgeInsets.only(right: 8),
+                                width: 165,
+                                height: 300,
+                                decoration: BoxDecoration(
+                                  color: Colors.green,
+                                  image: DecorationImage(
+                                    image:
+                                        AssetImage(originalList[index]['img']),
+                                    fit: BoxFit.cover,
+                                  ),
+                                  borderRadius: BorderRadius.circular(6),
+                                ),
+                              );
+                            })),
+                          ),
+                        ),
+
+                        
+
                       ])
                 ],
               ),
