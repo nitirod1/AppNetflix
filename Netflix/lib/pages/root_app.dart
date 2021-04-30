@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/json/root_app_json.dart';
+import 'package:netflix_clone/pages/home_page.dart';
 
 class RootApp extends StatefulWidget {
   @override
@@ -18,30 +19,49 @@ class _RootAppState extends State<RootApp> {
     );
   }
 
-  Widget getBody(){ //ทำการให้แถบข้างล่างเชื่อมโยงไปหน้าอื่น
-    return IndexedStack(
-      index : activeTab,
-      children : []
-    );
+  Widget getBody() {
+    //ทำการให้แถบข้างล่างเชื่อมโยงไปหน้าอื่น
+    return IndexedStack(index: activeTab, children: [
+      HomePage(),
+      Center(
+        child: Text(
+          "Coming Soon",
+          style: TextStyle(fontSize: 20, color: Colors.white),
+        ),
+      ),
+      Center(
+        child: Text(
+          "Search",
+          style: TextStyle(fontSize: 20, color: Colors.white),
+        ),
+      ),
+      Center(
+        child: Text(
+          "Dowloads",
+          style: TextStyle(fontSize: 20, color: Colors.white),
+        ),
+      ),
+    ]);
   }
 
-  Widget getFooter() { //สร้างแถบเมนูข้างล่าง
+  Widget getFooter() {
+    //สร้างแถบเมนูข้างล่าง
     return Container(
       height: 80,
       decoration: BoxDecoration(color: Colors.black),
       child: Padding(
-        padding: const EdgeInsets.only(left: 20, right: 20, top:5),
+        padding: const EdgeInsets.only(left: 20, right: 20, top: 5),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: List.generate(items.length, (index) { //ทำการสร้างแต่ละเมนูด้านล่าง
+          children: List.generate(items.length, (index) {
+            //ทำการสร้างแต่ละเมนูด้านล่าง
             return GestureDetector(
-              onTap: (){
+              onTap: () {
                 setState(() {
                   activeTab = index;
                 });
-
               },
-                          child: Column(children: [
+              child: Column(children: [
                 Icon(
                   items[index]["icon"],
                   color: Colors.white,
