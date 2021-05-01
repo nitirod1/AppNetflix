@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/json/home_json.dart';
-import 'package:netflix_clone/pages/mylist_page.dart';
 import 'package:netflix_clone/pages/profile_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -341,19 +340,18 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 onPressed: null),
                             IconButton(
-                              icon: Image.asset(
-                                "assets/images/test1.jpg", //หน้าโปรไฟล์
-                                width: 26,
-                                height: 26,
-                                fit: BoxFit.cover,
-                              ),
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (_) => Profile()));
-                              },
-                            ),
+                                icon: Image.asset(
+                                  "assets/images/test1.jpg", //หน้าโปรไฟล์
+                                  width: 26,
+                                  height: 26,
+                                  fit: BoxFit.cover,
+                                ),
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (_) => Profile()));
+                                },),
                             //เชื่อมไปหน้าโปรไฟล์
                           ],
                         )
@@ -393,15 +391,14 @@ class _HomePageState extends State<HomePage> {
                               
                         ),
                         //ต้องแก้ให้เป็นเฉพาะของแต่ละแถบเมนูข้างบนเท่านั้น ตอนนี้กดตรงไหนก็เข้า my list หมดเลย
-                        GestureDetector(
+                    /*    GestureDetector(
                           onTap:(){
                             Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (_) => Mylist_page()));
                           } 
-                        )
-
+                        ) */
                       ],
                     ),
                   ],
