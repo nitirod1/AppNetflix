@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/json/home_json.dart';
+import 'package:netflix_clone/pages/profile_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -188,7 +189,6 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
 
-
                         SizedBox(
                           height: 30,
                         ),
@@ -308,9 +308,6 @@ class _HomePageState extends State<HomePage> {
                             })),
                           ),
                         ),
-
-                        
-
                       ])
                 ],
               ),
@@ -349,7 +346,12 @@ class _HomePageState extends State<HomePage> {
                                   height: 26,
                                   fit: BoxFit.cover,
                                 ),
-                                onPressed: null),
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (_) => Profile()));
+                                },),
                             //เชื่อมไปหน้าโปรไฟล์
                           ],
                         )
