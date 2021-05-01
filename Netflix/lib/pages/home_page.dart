@@ -365,6 +365,9 @@ class _HomePageState extends State<HomePage> {
                     //แถบเมนูชื่อ
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
+                      
+
                       children: [
                         Text(
                           "TV Shows",
@@ -386,15 +389,17 @@ class _HomePageState extends State<HomePage> {
                               fontSize: 15,
                               color: Colors.white,
                               fontWeight: FontWeight.w500),
-                              //GestureDetector
+                              
+                              
                         ),
+                        //ต้องแก้ให้เป็นเฉพาะของแต่ละแถบเมนูข้างบนเท่านั้น ตอนนี้กดตรงไหนก็เข้า my list หมดเลย
                         GestureDetector(
                           onTap:(){
                             Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (_) => Mylist_page()));
-                          }
+                          } 
                         )
 
                       ],
