@@ -8,12 +8,12 @@ import 'package:flutter/material.dart';
 import 'package:netflix_clone/pages/profile_page.dart';
 import 'package:netflix_clone/json/mylist_json.dart';
 
-class Mylist_page extends StatefulWidget {
+class MylistPage extends StatefulWidget {
   @override
-  _Mylist_pageState createState() => _Mylist_pageState();
+  _MylistPageState createState() => _MylistPageState();
 }
 
-class _Mylist_pageState extends State<Mylist_page> {
+class _MylistPageState extends State<MylistPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +21,7 @@ class _Mylist_pageState extends State<Mylist_page> {
       resizeToAvoidBottomInset: false,
       appBar: getAppbar(),
       //bottomNavigationBar: getFooter(),
-      body: getBody(),
+      //body: getBody(),
     );
   }
 

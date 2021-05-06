@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/json/root_app_json.dart';
+import 'package:netflix_clone/pages/comingsoon_page.dart';
 import 'package:netflix_clone/pages/home_page.dart';
 
 class RootApp extends StatefulWidget {
@@ -23,12 +24,7 @@ class _RootAppState extends State<RootApp> {
     //ทำการให้แถบข้างล่างเชื่อมโยงไปหน้าอื่น
     return IndexedStack(index: activeTab, children: [
       HomePage(),
-      Center(
-        child: Text(
-          "Coming Soon",
-          style: TextStyle(fontSize: 20, color: Colors.white),
-        ),
-      ),
+      ComingSoonPage(),
       Center(
         child: Text(
           "Search",
