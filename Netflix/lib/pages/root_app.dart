@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:netflix_clone/json/root_app_json.dart';
 import 'package:netflix_clone/pages/comingsoon_page.dart';
 import 'package:netflix_clone/pages/home_page.dart';
+import 'package:netflix_clone/pages/search_page.dart';
 
 class RootApp extends StatefulWidget {
   @override
@@ -25,12 +26,7 @@ class _RootAppState extends State<RootApp> {
     return IndexedStack(index: activeTab, children: [
       HomePage(),
       ComingSoonPage(),
-      Center(
-        child: Text(
-          "Search",
-          style: TextStyle(fontSize: 20, color: Colors.white),
-        ),
-      ),
+      SearchPage(),
       Center(
         child: Text(
           "Dowloads",

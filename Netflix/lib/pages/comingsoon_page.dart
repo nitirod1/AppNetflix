@@ -160,7 +160,6 @@ class _ComingSoonPageState extends State<ComingSoonPage> {
                             ),
                             Row(
                               children: [
-
                                 Column(children: [
                                   //ทำกดnotification
                                   Icon(
@@ -178,8 +177,9 @@ class _ComingSoonPageState extends State<ComingSoonPage> {
                                     ),
                                   )
                                 ]),
-                                SizedBox(width:30,),
-
+                                SizedBox(
+                                  width: 30,
+                                ),
 
                                 //ทำปุ่ม info
                                 Column(children: [
@@ -203,9 +203,60 @@ class _ComingSoonPageState extends State<ComingSoonPage> {
                           ],
                         ),
                       ),
-                      SizedBox(height: 20,),
-
-
+                      //เริ่มทำส่วนของคำอธิบายหนังเรื่องๆต่างๆ ว่ามาวันไหน , sentinelle
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10, right: 10),
+                        child: Text(
+                          comingSoonJson[index]["date"],
+                          style: TextStyle(
+                            color: Colors.white.withOpacity(0.5),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10, right: 10),
+                        child: Text(
+                          comingSoonJson[index]["title"],
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18
+                          ),
+                        ),
+                      ), 
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10, right: 10),
+                        child: Text(
+                          comingSoonJson[index]["description"],
+                          style: TextStyle(
+                            color: Colors.white.withOpacity(0.5),
+                            height: 1.4,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10, right: 10),
+                        child: Text(
+                          comingSoonJson[index]["type"],
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 12,
+                            height: 1.4,
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 );
