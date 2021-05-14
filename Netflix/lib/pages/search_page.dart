@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/json/search_json.dart';
+import 'package:netflix_clone/pages/video_detail_page.dart';
 
 class SearchPage extends StatefulWidget {
   @override
@@ -113,21 +114,31 @@ class _SearchPageState extends State<SearchPage> {
                         ],
                       ),
                     ),
-                    Container(
-                      width: (size.width - 36) * 0.2,
-                      height: 80,
-                      child: Center(
-                        child: Container(
-                          width: 35,
-                          height: 35,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(width: 2, color: Colors.white)),
-                              child: Center(child: Icon(Icons.play_arrow,
-                              color: Colors.white,),),
-                              ),
+                    GestureDetector(
+                      onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => VideoDetailPage(
+                                        videoUrl: (searchJson[index]["video"]),
+                                      )));
+                        },
+                                          child: Container(
+                        width: (size.width - 36) * 0.2,
+                        height: 80,
+                        child: Center(
+                          child: Container(
+                            width: 35,
+                            height: 35,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(width: 2, color: Colors.white)),
+                                child: Center(child: Icon(Icons.play_arrow,
+                                color: Colors.white,),),
+                                ),
+                          ),
                         ),
-                      ),
+                    ),
                     
                   ],
                 ),

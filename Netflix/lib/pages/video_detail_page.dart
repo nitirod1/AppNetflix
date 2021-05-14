@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/json/video_detail_json.dart';
+import 'package:netflix_clone/pages/profile_page.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoDetailPage extends StatefulWidget {
@@ -65,12 +66,17 @@ class _VideoDetailPageState extends State<VideoDetailPage> {
             onPressed: () {}),
         IconButton(
             icon: Image.asset(
-              "assets/images/profile.jpeg",
+              "assets/images/test1.jpg",
               fit: BoxFit.cover,
               width: 26,
               height: 26,
             ),
-            onPressed: () {}),
+            onPressed: () {
+              Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => Profile()));
+            }),
       ],
     );
   }

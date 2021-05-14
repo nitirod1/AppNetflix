@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:netflix_clone/json/home_json.dart';
 import 'package:netflix_clone/pages/profile_page.dart';
 import 'package:netflix_clone/pages/mylist_page.dart';
+import 'package:netflix_clone/pages/video_detail_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -102,32 +103,43 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                         //ทำกล่องปุ่ม play
-                        Container(
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(4)),
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                                right: 13, left: 8, top: 2, bottom: 2),
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.play_arrow,
-                                  color: Colors.black,
-                                  size: 30,
-                                ),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Text(
-                                  "Play",
-                                  style: TextStyle(
+                        //กดเพื่อเข้าหน้าเล่นรายละเอียดวิดีโอ
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => VideoDetailPage(
+                                          videoUrl: "assets/videos/video_1.mp4",
+                                        )));
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(4)),
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  right: 13, left: 8, top: 2, bottom: 2),
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.play_arrow,
                                     color: Colors.black,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
+                                    size: 30,
                                   ),
-                                ),
-                              ],
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Text(
+                                    "Play",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -341,18 +353,19 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 onPressed: null),
                             IconButton(
-                                icon: Image.asset(
-                                  "assets/images/test1.jpg", //หน้าโปรไฟล์
-                                  width: 26,
-                                  height: 26,
-                                  fit: BoxFit.cover,
-                                ),
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (_) => Profile()));
-                                },),
+                              icon: Image.asset(
+                                "assets/images/test1.jpg", //หน้าโปรไฟล์
+                                width: 26,
+                                height: 26,
+                                fit: BoxFit.cover,
+                              ),
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => Profile()));
+                              },
+                            ),
                             //เชื่อมไปหน้าโปรไฟล์
                           ],
                         )
@@ -364,9 +377,6 @@ class _HomePageState extends State<HomePage> {
                     //แถบเมนูชื่อ
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
-                      
-
                       children: [
                         Text(
                           "TV Shows",
@@ -382,17 +392,23 @@ class _HomePageState extends State<HomePage> {
                               color: Colors.white,
                               fontWeight: FontWeight.w500),
                         ),
-                        Text(
-                          "My List",
-                          style: TextStyle(
-                              fontSize: 15,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500),
-                              
-                              
+                        GestureDetector(
+                          onTap:(){
+                            Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => MylistPage()));
+                          },
+                                                  child: Text(
+                            "My List",
+                            style: TextStyle(
+                                fontSize: 15,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500),
+                          ),
                         ),
                         //ต้องแก้ให้เป็นเฉพาะของแต่ละแถบเมนูข้างบนเท่านั้น ตอนนี้กดตรงไหนก็เข้า my list หมดเลย
-                       /* GestureDetector(
+                        /* GestureDetector(
                           onTap:(){
                             Navigator.push(
                                     context,
@@ -401,7 +417,6 @@ class _HomePageState extends State<HomePage> {
                           } 
                         ) */
 
-                        
                         //ต้องแก้ให้เป็นเฉพาะของแต่ละแถบเมนูข้างบนเท่านั้น ตอนนี้กดตรงไหนก็เข้า my list หมดเลย
                       ],
                     ),
