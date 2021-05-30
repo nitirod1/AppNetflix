@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/json/home_json.dart';
+import 'package:netflix_clone/pages/movie_page.dart';
 import 'package:netflix_clone/pages/profile_page.dart';
 import 'package:netflix_clone/pages/mylist_page.dart';
+import 'package:netflix_clone/pages/tvshows_page.dart';
 import 'package:netflix_clone/pages/video_detail_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,7 +17,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.black,
-      body: getBody(),
+      body: SafeArea(child: getBody()),
     );
   }
 
@@ -88,19 +90,24 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         //ทำปุ่ม my list
-                        Column(
-                          children: [
-                            Icon(
-                              Icons.add,
-                              color: Colors.white,
-                              size: 25,
-                            ),
-                            SizedBox(height: 5),
-                            Text("My List",
+                        GestureDetector(
+                          onTap: () {},
+                          child: Column(
+                            children: [
+                              Icon(
+                                Icons.add,
+                                color: Colors.white,
+                                size: 25,
+                              ),
+                              SizedBox(height: 5),
+                              Text(
+                                "My List",
                                 style: TextStyle(
                                     fontWeight: FontWeight.w600,
-                                    color: Colors.white))
-                          ],
+                                    color: Colors.white),
+                              ),
+                            ],
+                          ),
                         ),
                         //ทำกล่องปุ่ม play
                         //กดเพื่อเข้าหน้าเล่นรายละเอียดวิดีโอ
@@ -143,19 +150,31 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                         ),
-                        Column(
-                          children: [
-                            Icon(
-                              Icons.info_outline,
-                              color: Colors.white,
-                              size: 25,
-                            ),
-                            SizedBox(height: 5),
-                            Text("Info",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.white))
-                          ],
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => VideoDetailPage(
+                                  videoUrl: "assets/videos/video_1.mp4",
+                                ),
+                              ),
+                            );
+                          },
+                          child: Column(
+                            children: [
+                              Icon(
+                                Icons.info_outline,
+                                color: Colors.white,
+                                size: 25,
+                              ),
+                              SizedBox(height: 5),
+                              Text("Info",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.white))
+                            ],
+                          ),
                         ),
                       ]),
                   SizedBox(
@@ -188,6 +207,16 @@ class _HomePageState extends State<HomePage> {
                                 margin: EdgeInsets.only(right: 8),
                                 width: 110,
                                 height: 160,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (_) => VideoDetailPage(
+                                                videoUrl: listHitNetflix[index]
+                                                    ["url"])));
+                                  },
+                                ),
                                 decoration: BoxDecoration(
                                   color: Colors.green,
                                   image: DecorationImage(
@@ -228,6 +257,16 @@ class _HomePageState extends State<HomePage> {
                                 margin: EdgeInsets.only(right: 8),
                                 width: 110,
                                 height: 160,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (_) => VideoDetailPage(
+                                                videoUrl: popularList[index]
+                                                    ["url"])));
+                                  },
+                                ),
                                 decoration: BoxDecoration(
                                   color: Colors.green,
                                   image: DecorationImage(
@@ -268,6 +307,16 @@ class _HomePageState extends State<HomePage> {
                                 margin: EdgeInsets.only(right: 8),
                                 width: 110,
                                 height: 160,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (_) => VideoDetailPage(
+                                                videoUrl: trendingList[index]
+                                                    ["url"])));
+                                  },
+                                ),
                                 decoration: BoxDecoration(
                                   color: Colors.green,
                                   image: DecorationImage(
@@ -302,23 +351,37 @@ class _HomePageState extends State<HomePage> {
                           child: Padding(
                             padding: const EdgeInsets.only(left: 10),
                             child: Row(
-                                children:
-                                    List.generate(originalList.length, (index) {
-                              return Container(
-                                margin: EdgeInsets.only(right: 8),
-                                width: 165,
-                                height: 300,
-                                decoration: BoxDecoration(
-                                  color: Colors.green,
-                                  image: DecorationImage(
-                                    image:
-                                        AssetImage(originalList[index]['img']),
-                                    fit: BoxFit.cover,
-                                  ),
-                                  borderRadius: BorderRadius.circular(6),
-                                ),
-                              );
-                            })),
+                              children: List.generate(
+                                originalList.length,
+                                (index) {
+                                  return Container(
+                                    margin: EdgeInsets.only(right: 8),
+                                    width: 165,
+                                    height: 300,
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (_) => VideoDetailPage(
+                                                    videoUrl:
+                                                        originalList[index]
+                                                            ["url"])));
+                                      },
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: Colors.green,
+                                      image: DecorationImage(
+                                        image: AssetImage(
+                                            originalList[index]['img']),
+                                        fit: BoxFit.cover,
+                                      ),
+                                      borderRadius: BorderRadius.circular(6),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
                           ),
                         ),
                       ])
@@ -346,13 +409,6 @@ class _HomePageState extends State<HomePage> {
                         Row(
                           children: [
                             IconButton(
-                                icon: Icon(
-                                  Icons.collections_bookmark,
-                                  color: Colors.white,
-                                  size: 35,
-                                ),
-                                onPressed: null),
-                            IconButton(
                               icon: Image.asset(
                                 "assets/images/test1.jpg", //หน้าโปรไฟล์
                                 width: 26,
@@ -378,28 +434,42 @@ class _HomePageState extends State<HomePage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Text(
-                          "TV Shows",
-                          style: TextStyle(
-                              fontSize: 15,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500),
-                        ),
-                        Text(
-                          "Movies",
-                          style: TextStyle(
-                              fontSize: 15,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => TVShowsPage()));
+                          },
+                          child: Text(
+                            "TV Shows",
+                            style: TextStyle(
+                                fontSize: 15,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500),
+                          ),
                         ),
                         GestureDetector(
-                          onTap:(){
-                            Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (_) => MylistPage()));
+                          onTap: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (_) => MoviePage()));
                           },
-                                                  child: Text(
+                          child: Text(
+                            "Movies",
+                            style: TextStyle(
+                                fontSize: 15,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => MylistPage()));
+                          },
+                          child: Text(
                             "My List",
                             style: TextStyle(
                                 fontSize: 15,

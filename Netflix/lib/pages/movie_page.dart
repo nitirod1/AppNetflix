@@ -1,21 +1,15 @@
-/*onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (_) => Profile()));
-                              },*/
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/json/home_json.dart';
 import 'package:netflix_clone/pages/profile_page.dart';
 import 'package:netflix_clone/json/mylist_json.dart';
 import 'package:netflix_clone/pages/video_detail_page.dart';
 
-class MylistPage extends StatefulWidget {
+class MoviePage extends StatefulWidget {
   @override
-  _MylistPageState createState() => _MylistPageState();
+  _MoviePageState createState() => _MoviePageState();
 }
 
-class _MylistPageState extends State<MylistPage> {
+class _MoviePageState extends State<MoviePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +26,7 @@ class _MylistPageState extends State<MylistPage> {
       backgroundColor: Colors.black,
       elevation: 0,
       title: Text(
-        "My list",
+        "Movie",
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
       ),
       actions: [
