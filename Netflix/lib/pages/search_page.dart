@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/json/search_json.dart';
+import 'package:netflix_clone/pages/profile_page.dart';
 import 'package:netflix_clone/pages/video_detail_page.dart';
 
 class SearchPage extends StatefulWidget {
@@ -40,6 +41,16 @@ class _SearchPageState extends State<SearchPage> {
               )),
         ),
       ),
+      actions: [
+        IconButton(
+          icon: Image.asset("assets/images/test1.jpg",
+              width: 26, height: 26, fit: BoxFit.cover),
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (_) => Profile()));
+          },
+        )
+      ],
     );
   }
 
@@ -62,6 +73,8 @@ class _SearchPageState extends State<SearchPage> {
               ),
             ),
             SizedBox(height: 12),
+            //ด้านล่างของตัวหนังสือ Top searchs
+
             Column(
                 children: List.generate(searchJson.length, (index) {
               return Padding(
@@ -116,14 +129,14 @@ class _SearchPageState extends State<SearchPage> {
                     ),
                     GestureDetector(
                       onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (_) => VideoDetailPage(
-                                        videoUrl: (searchJson[index]["video"]),
-                                      )));
-                        },
-                                          child: Container(
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => VideoDetailPage(
+                                      videoUrl: (searchJson[index]["video"]),
+                                    )));
+                      },
+                      child: Container(
                         width: (size.width - 36) * 0.2,
                         height: 80,
                         child: Center(
@@ -132,14 +145,18 @@ class _SearchPageState extends State<SearchPage> {
                             height: 35,
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                border: Border.all(width: 2, color: Colors.white)),
-                                child: Center(child: Icon(Icons.play_arrow,
-                                color: Colors.white,),),
-                                ),
+                                border:
+                                    Border.all(width: 2, color: Colors.white)),
+                            child: Center(
+                              child: Icon(
+                                Icons.play_arrow,
+                                color: Colors.white,
+                              ),
+                            ),
                           ),
                         ),
+                      ),
                     ),
-                    
                   ],
                 ),
               );

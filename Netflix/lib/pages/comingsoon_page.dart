@@ -31,8 +31,6 @@ class _ComingSoonPageState extends State<ComingSoonPage> {
       ),
       actions: [
         IconButton(
-            icon: Icon(Icons.collections_bookmark, size: 28), onPressed: () {}),
-        IconButton(
           icon: Image.asset("assets/images/test1.jpg",
               width: 26, height: 26, fit: BoxFit.cover),
           onPressed: () {
@@ -224,12 +222,11 @@ class _ComingSoonPageState extends State<ComingSoonPage> {
                         child: Text(
                           comingSoonJson[index]["title"],
                           style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18
-                          ),
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18),
                         ),
-                      ), 
+                      ),
                       SizedBox(
                         height: 5,
                       ),

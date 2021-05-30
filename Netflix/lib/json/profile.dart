@@ -1,1 +1,7 @@
-const String profileUrl = "assets/images/profile.jpeg";
+const List profileData = [
+  {"image": "assets/images/profile.jpeg"},
+  {"image": "assets/images/profile.jpeg"},
+  {"image": "assets/images/profile.jpeg"},
+  {"image": "assets/images/profile.jpeg"},
+  {"image": "assets/images/profile.jpeg"}
+];

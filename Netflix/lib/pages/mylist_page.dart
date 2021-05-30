@@ -5,6 +5,7 @@
                                         builder: (_) => Profile()));
                               },*/
 import 'package:flutter/material.dart';
+import 'package:netflix_clone/json/home_json.dart';
 import 'package:netflix_clone/pages/profile_page.dart';
 import 'package:netflix_clone/json/mylist_json.dart';
 
@@ -21,7 +22,7 @@ class _MylistPageState extends State<MylistPage> {
       resizeToAvoidBottomInset: false,
       appBar: getAppbar(),
       //bottomNavigationBar: getFooter(),
-      //body: getBody(),
+      body: getBody(),
     );
   }
 
@@ -30,100 +31,52 @@ class _MylistPageState extends State<MylistPage> {
       backgroundColor: Colors.black,
       elevation: 0,
       title: Text(
-        "Mylist",
+        "My list",
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
       ),
+      actions: [
+        IconButton(
+          icon: Image.asset("assets/images/test1.jpg",
+              width: 26, height: 26, fit: BoxFit.cover),
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (_) => Profile()));
+          },
+        )
+      ],
     );
   }
 
   Widget getBody() {
     var size = MediaQuery.of(context).size;
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
-      //ทำการเลื่อนได้
-      child: SingleChildScrollView(
-        child: 
-                        SingleChildScrollView(
-                          scrollDirection: Axis.vertical,
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: 
-                            
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: List.generate(3,
-                                    (index) {
-                              return Container(
-                                margin: EdgeInsets.only(right: 8),
-                                width: 110,
-                                height: 160,
-                                decoration: BoxDecoration(
-                                  color: Colors.green,
-                                  image: DecorationImage(
-                                    image: AssetImage(
-                                        mylistTest[index]['img']),
-                                    fit: BoxFit.cover,
-                                  ),
-                                  borderRadius: BorderRadius.circular(6),
-                                ),
-                              );
-                            })),
-                          ),
-                        ),
 
-
-                        
-            //containner อีกกล่อง
-          /*  Container(
-              child: SafeArea(
-                child: Column(
-                  children: [
-                    //ปุ่มต่างๆ แถบข้างบน
-                    SizedBox(height: 10), //จัดการช่องว่างข้างบน
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: Image.asset(
-                            "assets/images/logo.ico", //ทำการใส่ icon
-                            width: 35,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            IconButton(
-                                icon: Icon(
-                                  Icons.collections_bookmark,
-                                  color: Colors.white,
-                                  size: 35,
-                                ),
-                                onPressed: null),
-                            IconButton(
-                              icon: Image.asset(
-                                "assets/images/test1.jpg", //หน้าโปรไฟล์
-                                width: 26,
-                                height: 26,
-                                fit: BoxFit.cover,
-                              ),
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (_) => Profile()));
-                              },
-                            ),
-                            //เชื่อมไปหน้าโปรไฟล์
-                          ],
-                        )
-                      ],
-                    ),
-                  ],
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: SafeArea(
+        child: GridView.count(
+          crossAxisCount: 3,
+          crossAxisSpacing: 7,
+          mainAxisSpacing: 5,
+          childAspectRatio: 0.7,
+          children: List.generate(
+            mylistTest.length,
+            (index) => Container(
+              decoration: BoxDecoration(
+                color: Colors.green,
+                image: DecorationImage(
+                  image: AssetImage(mylistTest[index]['img']),
+                  fit: BoxFit.cover,
                 ),
+                borderRadius: BorderRadius.circular(6),
               ),
-            ), */
+              //width: 50,
+              //height: 50,
+              //color: Colors.red,
+              // child: Text("$index"),
+            ),
+          ),
         ),
-      );
+      ),
+    );
   }
 }
