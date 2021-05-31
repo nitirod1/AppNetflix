@@ -169,10 +169,12 @@ class _HomePageState extends State<HomePage> {
                                 size: 25,
                               ),
                               SizedBox(height: 5),
-                              Text("Info",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.white))
+                              Text(
+                                "Info",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white),
+                              ),
                             ],
                           ),
                         ),
