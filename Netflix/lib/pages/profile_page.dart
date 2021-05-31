@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/json/home_json.dart';
 import 'package:netflix_clone/json/profile.dart';
@@ -15,7 +17,7 @@ class _ProfileState extends State<Profile> {
       resizeToAvoidBottomInset: false,
       appBar: getAppbar(),
       //bottomNavigationBar: getFooter(),
-      //body: getBody(),
+      body: getBody(),
     );
   }
 
@@ -30,33 +32,36 @@ class _ProfileState extends State<Profile> {
     );
   }
 
-  /* Widget getBody() {
+  Widget getBody() {
     var size = MediaQuery.of(context).size;
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.only(bottom: 10),
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: SafeArea(
         child: Column(
-  2
+          children: [
             Row(
-              children: List.generate(profileData.length, (index) {
-                return Container(
-                  margin: EdgeInsets.only(right: 8),
-                  width: 165,
-                  height: 300,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: List.generate(
+                profileData.length,
+                (index) => Container(
                   decoration: BoxDecoration(
                     color: Colors.green,
-                    image: DecorationImage(
-                      image: AssetImage(profileData[index]["img"]),
-                      fit: BoxFit.cover,
-                    ),
                     borderRadius: BorderRadius.circular(6),
+                    image: DecorationImage(
+                      image: AssetImage(
+                        profileData[index]["img"],
+                      ),
+                      //fit: BoxFit.cover,
+                    ),
                   ),
-                );
-              }),
-            )
+                  width: 60,
+                  height: 60,
+                ),
+              ),
+            ),
           ],
         ),
       ),
     );
-  }*/
+  }
 }
