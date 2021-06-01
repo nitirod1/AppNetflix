@@ -94,8 +94,8 @@ class _ProfileState extends State<Profile> {
             SizedBox(height: 5),
             GestureDetector(
               onTap: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (_) => MylistPage()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => ProfileUserPage()));
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,

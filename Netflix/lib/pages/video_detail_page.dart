@@ -9,6 +9,7 @@ class VideoDetailPage extends StatefulWidget {
   const VideoDetailPage({
     Key key,
     this.videoUrl,
+    String nametest,
   }) : super(key: key);
   @override
   _VideoDetailPageState createState() => _VideoDetailPageState();
@@ -24,12 +25,16 @@ class _VideoDetailPageState extends State<VideoDetailPage> {
   void initState() {
     super.initState();
     _controller = VideoPlayerController.asset(widget.videoUrl)
-      ..initialize().then((_) {
-        // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
-        setState(() {
-          _controller.play();
-        });
-      });
+      ..initialize().then(
+        (_) {
+          // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
+          setState(
+            () {
+              _controller.play();
+            },
+          );
+        },
+      );
   }
 
   @override

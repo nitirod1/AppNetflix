@@ -5,6 +5,8 @@ import 'package:netflix_clone/pages/profile_page.dart';
 import 'package:netflix_clone/json/mylist_json.dart';
 import 'package:netflix_clone/pages/video_detail_page.dart';
 
+import 'mylist_page.dart';
+
 class ProfileUserPage extends StatefulWidget {
   @override
   _ProfileUserPageState createState() => _ProfileUserPageState();
@@ -35,6 +37,7 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
 
   Widget getBody() {
     var size = MediaQuery.of(context).size;
+    //int itemCount = profileData.length;
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(50),
@@ -52,10 +55,13 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
                   child: GestureDetector(
                     onTap: () {
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (_) => VideoDetailPage(
-                                  videoUrl: originalList[index]["url"])));
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => MylistPage(
+                              //videoUrl: originalList[index]["url"],
+                              ),
+                        ),
+                      );
                     },
                   ),
 

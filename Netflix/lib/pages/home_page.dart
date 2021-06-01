@@ -157,8 +157,8 @@ class _HomePageState extends State<HomePage> {
                               context,
                               MaterialPageRoute(
                                 builder: (_) => VideoDetailPage(
-                                    videoUrl: "assets/videos/video_1.mp4",
-                                    nametest: "TestTest"),
+                                  videoUrl: "assets/videos/video_1.mp4",
+                                ),
                               ),
                             );
                           },
