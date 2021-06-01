@@ -5,6 +5,7 @@ import 'package:netflix_clone/pages/profile_page.dart';
 import 'package:netflix_clone/pages/mylist_page.dart';
 import 'package:netflix_clone/pages/tvshows_page.dart';
 import 'package:netflix_clone/pages/video_detail_page.dart';
+import 'package:netflix_clone/pages/video_player_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -116,8 +117,8 @@ class _HomePageState extends State<HomePage> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (_) => VideoDetailPage(
-                                          videoUrl: "assets/videos/video_1.mp4",
+                                    builder: (_) => MyHomePage(
+                                        //videoUrl: "assets/videos/video_1.mp4",
                                         )));
                           },
                           child: Container(
@@ -156,8 +157,8 @@ class _HomePageState extends State<HomePage> {
                               context,
                               MaterialPageRoute(
                                 builder: (_) => VideoDetailPage(
-                                  videoUrl: "assets/videos/video_1.mp4",
-                                ),
+                                    videoUrl: "assets/videos/video_1.mp4",
+                                    nametest: "TestTest"),
                               ),
                             );
                           },

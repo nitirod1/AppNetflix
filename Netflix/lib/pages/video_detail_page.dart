@@ -6,7 +6,10 @@ import 'package:video_player/video_player.dart';
 class VideoDetailPage extends StatefulWidget {
   final String videoUrl;
 
-  const VideoDetailPage({Key key, this.videoUrl}) : super(key: key);
+  const VideoDetailPage({
+    Key key,
+    this.videoUrl,
+  }) : super(key: key);
   @override
   _VideoDetailPageState createState() => _VideoDetailPageState();
 }
@@ -73,9 +76,7 @@ class _VideoDetailPageState extends State<VideoDetailPage> {
             ),
             onPressed: () {
               Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (_) => Profile()));
+                  context, MaterialPageRoute(builder: (_) => Profile()));
             }),
       ],
     );
@@ -83,12 +84,14 @@ class _VideoDetailPageState extends State<VideoDetailPage> {
 
   Widget getBody() {
     var size = MediaQuery.of(context).size;
+
+    var nametest;
     return Container(
       width: size.width,
       height: size.height,
       child: Column(
         children: [
-          _controller.value.initialized
+          _controller.value.isInitialized
               ? Container(
                   height: 220,
                   child: Stack(
@@ -187,7 +190,7 @@ class _VideoDetailPageState extends State<VideoDetailPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Age of Samuria: Battle for Japan",
+                      "$nametest",
                       style: TextStyle(
                           height: 1.4,
                           fontSize: 28,
@@ -298,7 +301,7 @@ class _VideoDetailPageState extends State<VideoDetailPage> {
                             width: 5,
                           ),
                           Text(
-                            "Resume",
+                            "Play",
                             style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
