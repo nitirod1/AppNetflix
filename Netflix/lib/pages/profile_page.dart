@@ -176,7 +176,7 @@ class _ProfileState extends State<Profile> {
                       child: Text(
                         "• Setting",
                         style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
+                            fontSize: 20, fontWeight: FontWeight.w600),
                       ),
                       decoration: BoxDecoration(
                           //border: Border(

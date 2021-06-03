@@ -115,16 +115,19 @@ class _HomePageState extends State<HomePage> {
                         GestureDetector(
                           onTap: () {
                             Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (_) => MyHomePage(
-                                        //videoUrl: "assets/videos/video_1.mp4",
-                                        )));
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => MyHomePage(
+                                    //videoUrl: "assets/videos/video_1.mp4",
+                                    ),
+                              ),
+                            );
                           },
                           child: Container(
                             decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(4)),
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(4),
+                            ),
                             child: Padding(
                               padding: const EdgeInsets.only(
                                   right: 13, left: 8, top: 2, bottom: 2),
