@@ -33,6 +33,7 @@ dependencies:
   http: ^0.13.1
   video_player: ^2.1.4
   better_player: ^0.0.48
+  pin_code_fields: ^7.2.0
   #youtube_player_flutter: ^8.0.0
   #chewie: ^2.13.0
 
