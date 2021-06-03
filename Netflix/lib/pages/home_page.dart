@@ -50,14 +50,15 @@ class _HomePageState extends State<HomePage> {
                     Container(
                       height: 500,
                       decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                        colors: [
-                          Colors.black.withOpacity(0.85),
-                          Colors.black.withOpacity(0),
-                        ],
-                        end: Alignment.topCenter,
-                        begin: Alignment.bottomCenter,
-                      )),
+                        gradient: LinearGradient(
+                          colors: [
+                            Colors.black.withOpacity(0.85),
+                            Colors.black.withOpacity(0),
+                          ],
+                          end: Alignment.topCenter,
+                          begin: Alignment.bottomCenter,
+                        ),
+                      ),
                     ),
                     //ใส่ชื่อเรื่อง
                     Container(
@@ -117,7 +118,7 @@ class _HomePageState extends State<HomePage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (_) => MyHomePage(
+                                builder: (_) => VideoPlayerPage(
                                     //videoUrl: "assets/videos/video_1.mp4",
                                     ),
                               ),

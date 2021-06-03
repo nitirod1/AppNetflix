@@ -32,13 +32,14 @@ class _SearchPageState extends State<SearchPage> {
         ),
         child: TextField(
           decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: "Searches",
-              hintStyle: TextStyle(color: Colors.white.withOpacity(0.5)),
-              prefixIcon: Icon(
-                Icons.search,
-                color: Colors.white.withOpacity(0.5),
-              )),
+            border: InputBorder.none,
+            hintText: "Searches",
+            hintStyle: TextStyle(color: Colors.white.withOpacity(0.5)),
+            prefixIcon: Icon(
+              Icons.search,
+              color: Colors.white.withOpacity(0.5),
+            ),
+          ),
         ),
       ),
       actions: [
@@ -144,9 +145,9 @@ class _SearchPageState extends State<SearchPage> {
                             width: 35,
                             height: 35,
                             decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border:
-                                    Border.all(width: 2, color: Colors.white)),
+                              shape: BoxShape.circle,
+                              border: Border.all(width: 2, color: Colors.white),
+                            ),
                             child: Center(
                               child: Icon(
                                 Icons.play_arrow,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/json/profile.dart';
+import 'edit_profile_page.dart';
 import 'mylist_page.dart';
 
 class ProfileUserPage extends StatefulWidget {
@@ -24,7 +25,7 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
       backgroundColor: Colors.black,
       elevation: 0,
       title: Text(
-        "จัดการโปรไฟล์",
+        "Manage Profiles",
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
       ),
     );
@@ -52,7 +53,7 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (_) => MylistPage(
+                              builder: (_) => EditProfilePage(
                                   //videoUrl: originalList[index]["url"],
                                   ),
                             ),
@@ -83,7 +84,7 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (_) => MylistPage(
+                              builder: (_) => EditProfilePage(
                                   //videoUrl: originalList[index]["url"],
                                   ),
                             ),
@@ -132,7 +133,7 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (_) => MylistPage(
+                                builder: (_) => EditProfilePage(
                                     //videoUrl: originalList[index]["url"],
                                     ),
                               ),

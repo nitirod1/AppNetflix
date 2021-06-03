@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:better_player/better_player.dart';
 
-class MyHomePage extends StatefulWidget {
+class VideoPlayerPage extends StatefulWidget {
   //MyHomePage({Key key, this.title}) : super(key: key);
 
   //final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _VideoPlayerPageState createState() => _VideoPlayerPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _VideoPlayerPageState extends State<VideoPlayerPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

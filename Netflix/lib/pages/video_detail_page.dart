@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/json/video_detail_json.dart';
 import 'package:netflix_clone/pages/profile_page.dart';
+import 'package:netflix_clone/pages/video_player_page.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoDetailPage extends StatefulWidget {
@@ -66,12 +67,6 @@ class _VideoDetailPageState extends State<VideoDetailPage> {
             Navigator.pop(context);
           }),
       actions: [
-        IconButton(
-            icon: Icon(
-              Icons.collections_bookmark,
-              size: 28,
-            ),
-            onPressed: () {}),
         IconButton(
             icon: Image.asset(
               "assets/images/test1.jpg",
@@ -289,30 +284,42 @@ class _VideoDetailPageState extends State<VideoDetailPage> {
                     SizedBox(
                       height: 12,
                     ),
-                    Container(
-                      width: size.width,
-                      height: 38,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(4),
-                          color: Colors.white),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.play_arrow,
-                            color: Colors.black,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => VideoPlayerPage(
+                                //videoUrl: "assets/videos/video_1.mp4",
+                                ),
                           ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text(
-                            "Play",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16),
-                          ),
-                        ],
+                        );
+                      },
+                      child: Container(
+                        width: size.width,
+                        height: 38,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4),
+                            color: Colors.white),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.play_arrow,
+                              color: Colors.black,
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              "Play",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     SizedBox(
