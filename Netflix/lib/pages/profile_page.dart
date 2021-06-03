@@ -1,9 +1,11 @@
 //import 'dart:html';
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:netflix_clone/json/home_json.dart';
 import 'package:netflix_clone/json/profile.dart';
 import 'package:netflix_clone/pages/profile_user.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 
 import 'mylist_page.dart';
 
@@ -36,6 +38,63 @@ class _ProfileState extends State<Profile> {
   }
 
   Widget getBody() {
+    createAlertDialog(BuildContext context, bool incorrect) {
+      String currentText = "";
+
+      return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text(
+              incorrect
+                  ? "Incorrect PIN. Please try again."
+                  : "Enter your PIN to access this profile.",
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 16),
+            ),
+            content: Wrap(
+              children: [
+                PinCodeTextField(
+                  obscureText: true,
+                  obscuringCharacter: '*',
+                  animationType: AnimationType.fade,
+                  blinkWhenObscuring: true,
+                  enablePinAutofill: true,
+                  appContext: context,
+                  keyboardType: TextInputType.number,
+                  length: 4,
+                  onChanged: (value) {
+                    setState(() {
+                      currentText = value;
+                    });
+                  },
+                  onCompleted: (value) {
+                    if (value == "1234") {
+                      Navigator.of(context).pop();
+                    } else {
+                      Navigator.of(context).pop();
+                      createAlertDialog(context, true);
+                    }
+                  },
+                ),
+                SizedBox(
+                  height: 70,
+                ),
+                Text("Forget PIN?", textAlign: TextAlign.center),
+              ],
+            ),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text("Cancel"))
+            ],
+          );
+        },
+      );
+    }
+
     var size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.black,
@@ -47,20 +106,25 @@ class _ProfileState extends State<Profile> {
               //crossAxisAlignment: CrossAxisAlignment.start,
               children: List.generate(
                 profileData.length,
-                (index) => Container(
-                  decoration: BoxDecoration(
-                    color: Colors.green,
-                    borderRadius: BorderRadius.circular(6),
-                    image: DecorationImage(
-                      image: AssetImage(
-                        profileData[index]["img"],
+                (index) => GestureDetector(
+                  onTap: () {
+                    createAlertDialog(context, false);
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.green,
+                      borderRadius: BorderRadius.circular(6),
+                      image: DecorationImage(
+                        image: AssetImage(
+                          profileData[index]["img"],
+                        ),
+                        fit: BoxFit.cover,
                       ),
-                      fit: BoxFit.cover,
                     ),
+                    //child: Text("test"),
+                    width: 60,
+                    height: 60,
                   ),
-                  //child: Text("test"),
-                  width: 60,
-                  height: 60,
                 ),
               ),
             ),
