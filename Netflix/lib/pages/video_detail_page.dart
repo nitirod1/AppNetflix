@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/json/video_detail_json.dart';
-import 'package:flutter_auth/pages/profile_page.dart';
-import 'package:flutter_auth/pages/video_player_page.dart';
+import 'package:netflix_clone/json/video_detail_json.dart';
+import 'package:netflix_clone/pages/profile_page.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoDetailPage extends StatefulWidget {
   final String videoUrl;
 
-  const VideoDetailPage({
-    Key key,
-    this.videoUrl,
-    String nametest,
-  }) : super(key: key);
+  const VideoDetailPage({Key key, this.videoUrl}) : super(key: key);
   @override
   _VideoDetailPageState createState() => _VideoDetailPageState();
 }
@@ -26,16 +21,12 @@ class _VideoDetailPageState extends State<VideoDetailPage> {
   void initState() {
     super.initState();
     _controller = VideoPlayerController.asset(widget.videoUrl)
-      ..initialize().then(
-        (_) {
-          // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
-          setState(
-            () {
-              _controller.play();
-            },
-          );
-        },
-      );
+      ..initialize().then((_) {
+        // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
+        setState(() {
+          _controller.play();
+        });
+      });
   }
 
   @override
@@ -68,6 +59,12 @@ class _VideoDetailPageState extends State<VideoDetailPage> {
           }),
       actions: [
         IconButton(
+            icon: Icon(
+              Icons.collections_bookmark,
+              size: 28,
+            ),
+            onPressed: () {}),
+        IconButton(
             icon: Image.asset(
               "assets/images/test1.jpg",
               fit: BoxFit.cover,
@@ -76,7 +73,9 @@ class _VideoDetailPageState extends State<VideoDetailPage> {
             ),
             onPressed: () {
               Navigator.push(
-                  context, MaterialPageRoute(builder: (_) => Profile()));
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => Profile()));
             }),
       ],
     );
@@ -84,14 +83,12 @@ class _VideoDetailPageState extends State<VideoDetailPage> {
 
   Widget getBody() {
     var size = MediaQuery.of(context).size;
-
-    var nametest;
     return Container(
       width: size.width,
       height: size.height,
       child: Column(
         children: [
-          _controller.value.isInitialized
+          _controller.value.initialized
               ? Container(
                   height: 220,
                   child: Stack(
@@ -190,7 +187,7 @@ class _VideoDetailPageState extends State<VideoDetailPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "$nametest",
+                      "Age of Samuria: Battle for Japan",
                       style: TextStyle(
                           height: 1.4,
                           fontSize: 28,
@@ -284,42 +281,30 @@ class _VideoDetailPageState extends State<VideoDetailPage> {
                     SizedBox(
                       height: 12,
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => VideoPlayerPage(
-                                //videoUrl: "assets/videos/video_1.mp4",
-                                ),
+                    Container(
+                      width: size.width,
+                      height: 38,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4),
+                          color: Colors.white),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.play_arrow,
+                            color: Colors.black,
                           ),
-                        );
-                      },
-                      child: Container(
-                        width: size.width,
-                        height: 38,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(4),
-                            color: Colors.white),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.play_arrow,
-                              color: Colors.black,
-                            ),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Text(
-                              "Play",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16),
-                            ),
-                          ],
-                        ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            "Resume",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16),
+                          ),
+                        ],
                       ),
                     ),
                     SizedBox(
