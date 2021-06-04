@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:netflix_clone/json/home_json.dart';
-import 'package:netflix_clone/pages/movie_page.dart';
-import 'package:netflix_clone/pages/profile_page.dart';
-import 'package:netflix_clone/pages/mylist_page.dart';
-import 'package:netflix_clone/pages/tvshows_page.dart';
-import 'package:netflix_clone/pages/video_detail_page.dart';
+import 'package:flutter_auth/json/home_json.dart';
+import 'package:flutter_auth/pages/movie_page.dart';
+import 'package:flutter_auth/pages/profile_page.dart';
+import 'package:flutter_auth/pages/mylist_page.dart';
+import 'package:flutter_auth/pages/tvshows_page.dart';
+import 'package:flutter_auth/pages/video_detail_page.dart';
+import 'package:flutter_auth/pages/video_player_page.dart';
+import 'package:bordered_text/bordered_text.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -17,7 +19,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.black,
-      body: SafeArea(child: getBody()),
+      body: getBody(),
     );
   }
 
@@ -49,14 +51,15 @@ class _HomePageState extends State<HomePage> {
                     Container(
                       height: 500,
                       decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                        colors: [
-                          Colors.black.withOpacity(0.85),
-                          Colors.black.withOpacity(0),
-                        ],
-                        end: Alignment.topCenter,
-                        begin: Alignment.bottomCenter,
-                      )),
+                        gradient: LinearGradient(
+                          colors: [
+                            Colors.black.withOpacity(0.85),
+                            Colors.black.withOpacity(0),
+                          ],
+                          end: Alignment.topCenter,
+                          begin: Alignment.bottomCenter,
+                        ),
+                      ),
                     ),
                     //ใส่ชื่อเรื่อง
                     Container(
@@ -114,16 +117,19 @@ class _HomePageState extends State<HomePage> {
                         GestureDetector(
                           onTap: () {
                             Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (_) => VideoDetailPage(
-                                          videoUrl: "assets/videos/video_1.mp4",
-                                        )));
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => VideoPlayerPage(
+                                    //videoUrl: "assets/videos/video_1.mp4",
+                                    ),
+                              ),
+                            );
                           },
                           child: Container(
                             decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(4)),
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(4),
+                            ),
                             child: Padding(
                               padding: const EdgeInsets.only(
                                   right: 13, left: 8, top: 2, bottom: 2),
@@ -169,10 +175,12 @@ class _HomePageState extends State<HomePage> {
                                 size: 25,
                               ),
                               SizedBox(height: 5),
-                              Text("Info",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.white))
+                              Text(
+                                "Info",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white),
+                              ),
                             ],
                           ),
                         ),
@@ -307,15 +315,24 @@ class _HomePageState extends State<HomePage> {
                                 margin: EdgeInsets.only(right: 8),
                                 width: 110,
                                 height: 160,
+                                alignment: Alignment.bottomRight,
                                 child: GestureDetector(
                                   onTap: () {
                                     Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (_) => VideoDetailPage(
-                                                videoUrl: trendingList[index]
-                                                    ["url"])));
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (_) => VideoDetailPage(
+                                          videoUrl: trendingList[index]["url"],
+                                        ),
+                                      ),
+                                    );
                                   },
+                                  child: (Text(
+                                    trendingList[index]["ranking"],
+                                    style: TextStyle(
+                                        fontSize: 50,
+                                        fontWeight: FontWeight.bold),
+                                  )),
                                 ),
                                 decoration: BoxDecoration(
                                   color: Colors.green,
@@ -361,12 +378,14 @@ class _HomePageState extends State<HomePage> {
                                     child: GestureDetector(
                                       onTap: () {
                                         Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (_) => VideoDetailPage(
-                                                    videoUrl:
-                                                        originalList[index]
-                                                            ["url"])));
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (_) => VideoDetailPage(
+                                              videoUrl: originalList[index]
+                                                  ["url"],
+                                            ),
+                                          ),
+                                        );
                                       },
                                     ),
                                     decoration: BoxDecoration(
@@ -477,17 +496,6 @@ class _HomePageState extends State<HomePage> {
                                 fontWeight: FontWeight.w500),
                           ),
                         ),
-                        //ต้องแก้ให้เป็นเฉพาะของแต่ละแถบเมนูข้างบนเท่านั้น ตอนนี้กดตรงไหนก็เข้า my list หมดเลย
-                        /* GestureDetector(
-                          onTap:(){
-                            Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (_) => MylistPage()));
-                          } 
-                        ) */
-
-                        //ต้องแก้ให้เป็นเฉพาะของแต่ละแถบเมนูข้างบนเท่านั้น ตอนนี้กดตรงไหนก็เข้า my list หมดเลย
                       ],
                     ),
                   ],
