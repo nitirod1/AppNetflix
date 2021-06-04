@@ -13,26 +13,10 @@ const List popularList = [
 ];
 
 const List trendingList = [
-  {
-    "img": "assets/images/img_9.png",
-    "url": "assets/videos/video_1.mp4",
-    "ranking": "1"
-  },
-  {
-    "img": "assets/images/img_10.png",
-    "url": "assets/videos/video_2.mp4",
-    "ranking": "2"
-  },
-  {
-    "img": "assets/images/img_11.png",
-    "url": "assets/videos/video_1.mp4",
-    "ranking": "3"
-  },
-  {
-    "img": "assets/images/img_12.png",
-    "url": "assets/videos/video_2.mp4",
-    "ranking": "4"
-  },
+  {"img": "assets/images/img_9.png", "url": "assets/videos/video_1.mp4"},
+  {"img": "assets/images/img_10.png", "url": "assets/videos/video_2.mp4"},
+  {"img": "assets/images/img_11.png", "url": "assets/videos/video_1.mp4"},
+  {"img": "assets/images/img_12.png", "url": "assets/videos/video_2.mp4"},
 ];
 
 const List originalList = [
