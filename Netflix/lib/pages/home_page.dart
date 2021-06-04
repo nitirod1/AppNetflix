@@ -6,6 +6,7 @@ import 'package:netflix_clone/pages/mylist_page.dart';
 import 'package:netflix_clone/pages/tvshows_page.dart';
 import 'package:netflix_clone/pages/video_detail_page.dart';
 import 'package:netflix_clone/pages/video_player_page.dart';
+import 'package:bordered_text/bordered_text.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -18,7 +19,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.black,
-      body: SafeArea(child: getBody()),
+      body: getBody(),
     );
   }
 
@@ -314,15 +315,24 @@ class _HomePageState extends State<HomePage> {
                                 margin: EdgeInsets.only(right: 8),
                                 width: 110,
                                 height: 160,
+                                alignment: Alignment.bottomRight,
                                 child: GestureDetector(
                                   onTap: () {
                                     Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (_) => VideoDetailPage(
-                                                videoUrl: trendingList[index]
-                                                    ["url"])));
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (_) => VideoDetailPage(
+                                          videoUrl: trendingList[index]["url"],
+                                        ),
+                                      ),
+                                    );
                                   },
+                                  child: (Text(
+                                    trendingList[index]["ranking"],
+                                    style: TextStyle(
+                                        fontSize: 50,
+                                        fontWeight: FontWeight.bold),
+                                  )),
                                 ),
                                 decoration: BoxDecoration(
                                   color: Colors.green,
@@ -368,12 +378,14 @@ class _HomePageState extends State<HomePage> {
                                     child: GestureDetector(
                                       onTap: () {
                                         Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (_) => VideoDetailPage(
-                                                    videoUrl:
-                                                        originalList[index]
-                                                            ["url"])));
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (_) => VideoDetailPage(
+                                              videoUrl: originalList[index]
+                                                  ["url"],
+                                            ),
+                                          ),
+                                        );
                                       },
                                     ),
                                     decoration: BoxDecoration(
@@ -484,17 +496,6 @@ class _HomePageState extends State<HomePage> {
                                 fontWeight: FontWeight.w500),
                           ),
                         ),
-                        //ต้องแก้ให้เป็นเฉพาะของแต่ละแถบเมนูข้างบนเท่านั้น ตอนนี้กดตรงไหนก็เข้า my list หมดเลย
-                        /* GestureDetector(
-                          onTap:(){
-                            Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (_) => MylistPage()));
-                          } 
-                        ) */
-
-                        //ต้องแก้ให้เป็นเฉพาะของแต่ละแถบเมนูข้างบนเท่านั้น ตอนนี้กดตรงไหนก็เข้า my list หมดเลย
                       ],
                     ),
                   ],

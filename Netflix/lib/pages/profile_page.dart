@@ -4,6 +4,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/json/profile.dart';
+import 'package:netflix_clone/pages/edit_profile_page.dart';
 import 'package:netflix_clone/pages/profile_user.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
@@ -129,11 +130,6 @@ class _ProfileState extends State<Profile> {
               ),
             ),
             SizedBox(height: 5),
-            /* Text(
-              "Info",
-              style:
-                  TextStyle(fontWeight: FontWeight.w600, color: Colors.white),
-            ),*/
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: List.generate(
@@ -187,6 +183,16 @@ class _ProfileState extends State<Profile> {
             SizedBox(
               height: 5,
             ),
+            // ListView(
+            //   children: List.generate(
+            //     4,
+            //     (index) => Container(
+            //       width: 50,
+            //       height: 50,
+            //       color: Colors.green,
+            //     ),
+            //   ),
+            // ),
             GestureDetector(
               onTap: () {
                 Navigator.push(
@@ -228,8 +234,8 @@ class _ProfileState extends State<Profile> {
             ),
             GestureDetector(
               onTap: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (_) => MylistPage()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => EditProfilePage()));
               },
               child: Padding(
                 padding: const EdgeInsets.only(left: 10),
