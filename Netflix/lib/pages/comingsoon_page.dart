@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/json/coming_soon_json.dart';
-import 'package:flutter_auth/pages/profile_page.dart';
+import 'package:netflix_clone/json/coming_soon_json.dart';
+import 'package:netflix_clone/pages/profile_page.dart';
 
 class ComingSoonPage extends StatefulWidget {
   @override

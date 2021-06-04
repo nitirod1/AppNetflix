@@ -1,4 +1,4 @@
-name: flutter_auth
+name: netflix_clone
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -27,16 +27,11 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0
-  #video_player: ^1.0.1
+  video_player: ^1.0.1
   flutter_icons: ^1.1.0
   intl: ^0.17.0
   http: ^0.13.1
-  video_player: ^2.1.4
-  better_player: ^0.0.48
-  pin_code_fields: ^7.2.0
-  bordered_text: ^2.0.0
-  #youtube_player_flutter: ^8.0.0
-  #chewie: ^2.13.0
+  #video_player: ^2.1.4
 
 dev_dependencies:
   flutter_test:

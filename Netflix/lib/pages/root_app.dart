@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/json/root_app_json.dart';
-import 'package:flutter_auth/pages/comingsoon_page.dart';
-import 'package:flutter_auth/pages/home_page.dart';
-import 'package:flutter_auth/pages/search_page.dart';
+import 'package:netflix_clone/json/root_app_json.dart';
+import 'package:netflix_clone/pages/comingsoon_page.dart';
+import 'package:netflix_clone/pages/home_page.dart';
+import 'package:netflix_clone/pages/search_page.dart';
 
 class RootApp extends StatefulWidget {
   @override

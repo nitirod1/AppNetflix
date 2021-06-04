@@ -5,10 +5,10 @@
                                         builder: (_) => Profile()));
                               },*/
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/json/home_json.dart';
-import 'package:flutter_auth/pages/profile_page.dart';
-import 'package:flutter_auth/json/mylist_json.dart';
-import 'package:flutter_auth/pages/video_detail_page.dart';
+import 'package:netflix_clone/json/home_json.dart';
+import 'package:netflix_clone/pages/profile_page.dart';
+import 'package:netflix_clone/json/mylist_json.dart';
+import 'package:netflix_clone/pages/video_detail_page.dart';
 
 class MylistPage extends StatefulWidget {
   @override
