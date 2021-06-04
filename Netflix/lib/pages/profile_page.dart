@@ -1,36 +1,52 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/json/profile.dart';
-import 'package:flutter_auth/pages/edit_profile_page.dart';
 import 'package:flutter_auth/pages/profile_user.dart';
+import 'package:flutter_auth/pages/topbar_menu/dropdown_button/test.dart';
+import 'package:flutter_auth/pages/viewer/select_viewer.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-import 'mylist_page.dart';
+import 'package:flutter_auth/pages/topbar_menu/mylist_page.dart';
 
-final List<Icon> icon = <Icon>[
-  Icon(Icons.check),
-  Icon(Icons.settings),
-  Icon(Icons.account_circle_outlined),
-  Icon(Icons.logout)
+// final List<Icon> icon = <Icon>[
+//   Icon(Icons.check),
+//   Icon(Icons.settings),
+//   Icon(Icons.account_circle_outlined),
+//   Icon(Icons.logout)
+// ];
+
+final List<Icon> icons = [
+  Icon(
+    Icons.check,
+    color: Colors.white,
+  ),
+  Icon(
+    Icons.settings,
+    color: Colors.white,
+  ),
+  Icon(
+    Icons.account_circle_outlined,
+    color: Colors.white,
+  ),
+  Icon(
+    Icons.logout,
+    color: Colors.white,
+  )
 ];
-final List<String> menu = <String>[
-  'My List',
-  'App Settings',
-  'Account',
-  'Sign Out'
-];
+
+final List<String> menu = ['My List', 'App Settings', 'Account', 'Sign Out'];
 final List link = [
   MylistPage(),
-  MylistPage(),
-  MylistPage(),
+  DropDownButton(),
+  SelectViewerPage(),
   MylistPage(),
 ];
 
-class Profile extends StatefulWidget {
+class ProfilePage extends StatefulWidget {
   @override
-  _ProfileState createState() => _ProfileState();
+  _ProfilePageState createState() => _ProfilePageState();
 }
 
-class _ProfileState extends State<Profile> {
+class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,8 +63,12 @@ class _ProfileState extends State<Profile> {
       backgroundColor: Colors.black,
       elevation: 0,
       title: Text(
-        "Profile",
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        "Profiles & More",
+        style: TextStyle(
+          fontSize: 24,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+        ),
       ),
     );
   }
@@ -187,8 +207,11 @@ class _ProfileState extends State<Profile> {
                   Container(
                     child: Text(
                       "Edit profile",
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ],
@@ -216,15 +239,17 @@ class _ProfileState extends State<Profile> {
                             Container(
                               child: Row(
                                 children: [
-                                  icon[index],
+                                  icons[index],
                                   SizedBox(
                                     width: 8,
                                   ),
                                   Text(
                                     menu[index],
                                     style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w600),
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -233,6 +258,7 @@ class _ProfileState extends State<Profile> {
                               child: Icon(
                                 Icons.arrow_forward_ios_outlined,
                                 size: 14,
+                                color: Colors.white,
                               ),
                             ),
                           ],

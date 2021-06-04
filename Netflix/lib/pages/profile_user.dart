@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/json/profile.dart';
-import 'edit_profile_page.dart';
-import 'mylist_page.dart';
+import 'package:flutter_auth/pages/edit_profile_page.dart';
 
 class ProfileUserPage extends StatefulWidget {
   @override
@@ -133,14 +132,18 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (_) => EditProfilePage(
-                                    //videoUrl: originalList[index]["url"],
-                                    ),
+                                builder: (_) => EditProfilePage(),
                               ),
                             );
                           },
-                          child:
-                              Center(child: Text(profileData[index]["name"])),
+                          child: Center(
+                            child: Text(
+                              profileData[index]["name"],
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                     ),

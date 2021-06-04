@@ -1,25 +1,75 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/json/home_json.dart';
-import 'package:flutter_auth/pages/topbar_menu/movie_page.dart';
-
-import 'package:flutter_auth/pages/topbar_menu/mylist_page.dart';
 import 'package:flutter_auth/pages/profile_page.dart';
-import 'package:flutter_auth/pages/topbar_menu/tvshows_page.dart';
 import 'package:flutter_auth/pages/video_detail_page.dart';
 import 'package:flutter_auth/pages/video_player_page.dart';
 
-class HomePage extends StatefulWidget {
+import 'dropdown_button/list_item.dart';
+
+class MoviePage extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _MoviePageState createState() => _MoviePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _MoviePageState extends State<MoviePage> {
+  List<ListItem> _dropdownItems = [
+    ListItem(1, "All Genres"),
+    ListItem(2, "Sports"),
+    ListItem(3, "Thai"),
+    ListItem(4, "Commedy")
+  ];
+
+  List<DropdownMenuItem<ListItem>> _dropdownMenuItems;
+  ListItem _selectedItem;
+
+  void initState() {
+    super.initState();
+    _dropdownMenuItems = buildDropDownMenuItems(_dropdownItems);
+    _selectedItem = _dropdownMenuItems[0].value;
+  }
+
+  List<DropdownMenuItem<ListItem>> buildDropDownMenuItems(List listItems) {
+    List<DropdownMenuItem<ListItem>> items = List();
+    for (ListItem listItem in listItems) {
+      items.add(
+        DropdownMenuItem(
+          child: Text(listItem.name),
+          value: listItem,
+        ),
+      );
+    }
+    return items;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.black,
+      resizeToAvoidBottomInset: false,
+      appBar: getAppbar(),
+      //bottomNavigationBar: getFooter(),
       body: getBody(),
+    );
+  }
+
+  Widget getAppbar() {
+    return AppBar(
+      backgroundColor: Colors.black,
+      elevation: 0,
+      title: Text(
+        "Movie",
+        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+      ),
+      actions: [
+        IconButton(
+          icon: Image.asset("assets/images/test1.jpg",
+              width: 26, height: 26, fit: BoxFit.cover),
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (_) => ProfilePage()));
+          },
+        )
+      ],
     );
   }
 
@@ -426,88 +476,35 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     //ปุ่มต่างๆ แถบข้างบน
                     SizedBox(height: 10), //จัดการช่องว่างข้างบน
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: Image.asset(
-                            "assets/images/logo.ico", //ทำการใส่ icon
-                            width: 35,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            IconButton(
-                              icon: Image.asset(
-                                "assets/images/test1.jpg", //หน้าโปรไฟล์
-                                width: 26,
-                                height: 26,
-                                fit: BoxFit.cover,
-                              ),
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (_) => ProfilePage()));
-                              },
-                            ),
-                            //เชื่อมไปหน้าโปรไฟล์
-                          ],
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
+
                     //แถบเมนูชื่อ
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (_) => TVShowsPage()));
-                          },
-                          child: Text(
-                            "TV Shows",
-                            style: TextStyle(
-                                fontSize: 15,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500),
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            padding:
+                                const EdgeInsets.only(left: 10.0, right: 10.0),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.0),
+                              color: Colors.black.withOpacity(0.5),
+                              //border: Border.all()
+                            ),
+                            child: DropdownButtonHideUnderline(
+                              child: DropdownButton(
+                                  value: _selectedItem,
+                                  items: _dropdownMenuItems,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _selectedItem = value;
+                                    });
+                                  }),
+                            ),
                           ),
                         ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (_) => MoviePage()));
-                          },
-                          child: Text(
-                            "Movies",
-                            style: TextStyle(
-                                fontSize: 15,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500),
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (_) => MylistPage()));
-                          },
-                          child: Text(
-                            "My List",
-                            style: TextStyle(
-                                fontSize: 15,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500),
-                          ),
-                        ),
+
+                        //Text("You select ${_selectedItem.name}"),
                       ],
                     ),
                   ],

@@ -76,7 +76,7 @@ class _VideoDetailPageState extends State<VideoDetailPage> {
             ),
             onPressed: () {
               Navigator.push(
-                  context, MaterialPageRoute(builder: (_) => Profile()));
+                  context, MaterialPageRoute(builder: (_) => ProfilePage()));
             }),
       ],
     );
