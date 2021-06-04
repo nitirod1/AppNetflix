@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:netflix_clone/json/profile.dart';
+import 'package:flutter_auth/json/profile.dart';
 import 'edit_profile_page.dart';
 import 'mylist_page.dart';
 

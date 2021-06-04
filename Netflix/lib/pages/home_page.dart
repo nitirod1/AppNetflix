@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:netflix_clone/json/home_json.dart';
-import 'package:netflix_clone/pages/movie_page.dart';
-import 'package:netflix_clone/pages/profile_page.dart';
-import 'package:netflix_clone/pages/mylist_page.dart';
-import 'package:netflix_clone/pages/tvshows_page.dart';
-import 'package:netflix_clone/pages/video_detail_page.dart';
-import 'package:netflix_clone/pages/video_player_page.dart';
+import 'package:flutter_auth/json/home_json.dart';
+import 'package:flutter_auth/pages/movie_page.dart';
+import 'package:flutter_auth/pages/profile_page.dart';
+import 'package:flutter_auth/pages/mylist_page.dart';
+import 'package:flutter_auth/pages/tvshows_page.dart';
+import 'package:flutter_auth/pages/video_detail_page.dart';
+import 'package:flutter_auth/pages/video_player_page.dart';
 import 'package:bordered_text/bordered_text.dart';
 
 class HomePage extends StatefulWidget {

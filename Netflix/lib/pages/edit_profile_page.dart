@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:netflix_clone/json/profile.dart';
+import 'package:flutter_auth/json/profile.dart';
 
 class EditProfilePage extends StatefulWidget {
   @override

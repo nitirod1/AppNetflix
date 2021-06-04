@@ -3,9 +3,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:netflix_clone/json/profile.dart';
-import 'package:netflix_clone/pages/edit_profile_page.dart';
-import 'package:netflix_clone/pages/profile_user.dart';
+import 'package:flutter_auth/json/profile.dart';
+import 'package:flutter_auth/pages/edit_profile_page.dart';
+import 'package:flutter_auth/pages/profile_user.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import 'mylist_page.dart';

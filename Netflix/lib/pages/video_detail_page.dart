@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:netflix_clone/json/video_detail_json.dart';
-import 'package:netflix_clone/pages/profile_page.dart';
-import 'package:netflix_clone/pages/video_player_page.dart';
+import 'package:flutter_auth/json/video_detail_json.dart';
+import 'package:flutter_auth/pages/profile_page.dart';
+import 'package:flutter_auth/pages/video_player_page.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoDetailPage extends StatefulWidget {

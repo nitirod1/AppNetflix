@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:netflix_clone/pages/root_app.dart';
+import 'package:flutter_auth/Screens/Welcome/welcome_screen.dart';
+import 'package:flutter_auth/constants.dart';
 
-void main() {
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    theme: ThemeData.dark(),
-    home: RootApp(),
-  ));
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primaryColor: kPrimaryLightColor,
+        scaffoldBackgroundColor: kPrimaryColor,
+      ),
+      home: WelcomeScreen(),
+    );
+  }
 }
