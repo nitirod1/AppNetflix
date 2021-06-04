@@ -1,18 +1,30 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/json/home_json.dart';
 import 'package:flutter_auth/json/profile.dart';
-import 'package:flutter_auth/pages/profile_page.dart';
-import 'package:flutter_auth/json/mylist_json.dart';
-import 'package:flutter_auth/pages/video_detail_page.dart';
-
+import 'package:flutter_auth/pages/edit_profile_page.dart';
+import 'package:flutter_auth/pages/profile_user.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 import 'mylist_page.dart';
 
-class ProfileUserPage extends StatefulWidget {
+final List<Icon> icon = <Icon>[
+  Icon(Icons.check),
+  Icon(Icons.settings_applications),
+  Icon(Icons.usb_rounded),
+  Icon(Icons.logout)
+];
+final List<String> menu = <String>[
+  'My List',
+  'App Settings',
+  'Account',
+  'Sign Out'
+];
+
+class TestPage extends StatefulWidget {
   @override
-  _ProfileUserPageState createState() => _ProfileUserPageState();
+  _TestPageState createState() => _TestPageState();
 }
 
-class _ProfileUserPageState extends State<ProfileUserPage> {
+class _TestPageState extends State<TestPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,103 +41,35 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
       backgroundColor: Colors.black,
       elevation: 0,
       title: Text(
-        "จัดการโปรไฟล์",
+        "Profile",
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
       ),
     );
   }
 
   Widget getBody() {
-    var size = MediaQuery.of(context).size;
-    //int itemCount = profileData.length;
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(50),
-        child: Scaffold(
-          backgroundColor: Colors.black,
-          body: SafeArea(
-            child: Stack(
+    return SafeArea(
+        child: Container(
+            height: double.infinity,
+            color: Colors.green,
+            child: Column(
               children: [
-                GridView.count(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 20,
-                  mainAxisSpacing: 50,
-                  childAspectRatio: 1,
-                  children: List.generate(
-                    profileData.length,
-                    (index) => Container(
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => MylistPage(
-                                  //videoUrl: originalList[index]["url"],
-                                  ),
-                            ),
-                          );
-                        },
-                      ),
-
-                      decoration: BoxDecoration(
-                        color: Colors.green,
-                        image: DecorationImage(
-                          image: AssetImage(profileData[index]['img']),
-                          fit: BoxFit.cover,
-                        ),
-                        borderRadius: BorderRadius.circular(6),
-                      ),
-                      //width: 50,
-                      //height: 50,
-                      //color: Colors.red,
-                      // child: Text("$index"),
-                    ),
-                  ),
+                Container(
+                  child: Text("test"),
                 ),
-              ],
-            ),
-          ),
-
-          /*SafeArea(
-            child: GridView.count(
-              crossAxisCount: 2,
-              crossAxisSpacing: 20,
-              mainAxisSpacing: 50,
-              childAspectRatio: 1,
-              children: List.generate(
-                profileData.length,
-                (index) => Container(
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => MylistPage(
-                              //videoUrl: originalList[index]["url"],
-                              ),
-                        ),
+                Container(
+                  child: ListView.builder(
+                    itemCount: 4,
+                    itemBuilder: (context, index) {
+                      return ListTile(
+                        leading: icon[index],
+                        title: Text(menu[index]),
+                        dense: true,
                       );
                     },
                   ),
-
-                  decoration: BoxDecoration(
-                    color: Colors.green,
-                    image: DecorationImage(
-                      image: AssetImage(profileData[index]['img']),
-                      fit: BoxFit.cover,
-                    ),
-                    borderRadius: BorderRadius.circular(6),
-                  ),
-                  //width: 50,
-                  //height: 50,
-                  //color: Colors.red,
-                  // child: Text("$index"),
                 ),
-              ),
-            ),
-          ),*/
-        ),
-      ),
-    );
+              ],
+            )));
   }
 }

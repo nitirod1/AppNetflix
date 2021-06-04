@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/Welcome/welcome_screen.dart';
 import 'package:flutter_auth/constants.dart';
+import 'package:flutter_auth/pages/root_app.dart';
 
 void main() => runApp(MyApp());
 
@@ -10,11 +11,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      /*theme: ThemeData(
-        primaryColor: kPrimaryLightColor,
-        scaffoldBackgroundColor: kPrimaryColor,
-      ),*/
-      home: WelcomeScreen(),
+      theme: ThemeData.dark(),
+      home: RootApp(),
     );
   }
 }

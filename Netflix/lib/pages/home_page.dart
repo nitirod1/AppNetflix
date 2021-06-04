@@ -3,6 +3,7 @@ import 'package:flutter_auth/json/home_json.dart';
 import 'package:flutter_auth/pages/movie_page.dart';
 import 'package:flutter_auth/pages/profile_page.dart';
 import 'package:flutter_auth/pages/mylist_page.dart';
+import 'package:flutter_auth/pages/test.dart';
 import 'package:flutter_auth/pages/tvshows_page.dart';
 import 'package:flutter_auth/pages/video_detail_page.dart';
 import 'package:flutter_auth/pages/video_player_page.dart';
@@ -455,10 +456,8 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (_) => TVShowsPage()));
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (_) => TestPage()));
                           },
                           child: Text(
                             "TV Shows",
