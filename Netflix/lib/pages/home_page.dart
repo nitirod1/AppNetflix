@@ -2,8 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/json/home_json.dart';
 import 'package:flutter_auth/models/Movie.dart';
+import 'package:flutter_auth/models/MovieDetail.dart';
 import 'package:flutter_auth/pages/topbar_menu/movie_page.dart';
-
 import 'package:flutter_auth/pages/topbar_menu/mylist_page.dart';
 import 'package:flutter_auth/pages/profile_page.dart';
 import 'package:flutter_auth/pages/topbar_menu/tvshows_page.dart';
@@ -103,6 +103,7 @@ class _HomePageState extends State<HomePage> {
                   //ทำแถบหนังแต่ละเรื่องข้างล่าง เช่น netflix
                   buildGenresMovie(1, widget.viewer),
                   buildMyList(widget.viewer),
+                  buildHistory(1, widget.viewer),
                 ],
               ),
             ),
@@ -325,6 +326,64 @@ class _HomePageState extends State<HomePage> {
       },
     );
   }
+
+  FutureBuilder buildHistory(int idHistory, int idViewer) {
+    return FutureBuilder(
+      future: getDetailToken(idHistory, idViewer),
+      builder: (context, snapshot) {
+        return snapshot.data.length != 0
+            ? Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                SizedBox(
+                  height: 30,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 15, right: 15),
+                  child: Text(
+                    "History",
+                    style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: Row(
+                        children: List.generate(snapshot.data.length, (index) {
+                      return Container(
+                        margin: EdgeInsets.only(right: 8),
+                        width: 110,
+                        height: 160,
+                        child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => VideoDetailPage(
+                                        videoUrl: listHitNetflix[index]
+                                            ["url"])),
+                              );
+                            },
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(6),
+                              child: Image.network(
+                                  snapshot.data[index].posterUrl,
+                                  fit: BoxFit.cover),
+                            )),
+                      );
+                    })),
+                  ),
+                ),
+              ])
+            : SizedBox();
+      },
+    );
+  }
 }
 
 class RowFirstMovie extends StatelessWidget {
@@ -432,6 +491,30 @@ class RowFirstMovie extends StatelessWidget {
             ),
           ),
         ]);
+  }
+}
+
+Future<List<dynamic>> getDetailToken(int idHistory, int viewer) async {
+  String token = await getViewerToken(viewer);
+  var listMovie = [];
+  try {
+    var dio = Dio();
+    var response =
+        await dio.get("https://netflix-cpe231.herokuapp.com/browse/history",
+            options: Options(headers: {
+              'Authorization': 'Bearer $token',
+            }),
+            queryParameters: {'id': idHistory});
+
+    for (int i = 0; i < response.data.length; i++) {
+      // viewers.add(Viewer.fromJson(response.data[i]));
+      listMovie.add(MovieDetail.fromJson(response.data[i]));
+    }
+    print(listMovie);
+    return listMovie;
+  } catch (e) {
+    print(e);
+    return listMovie;
   }
 }
 
