@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/plan_setting/components/background.dart';
+import 'package:flutter_auth/components/rounded_button.dart';
 import 'package:flutter_auth/components/rounded_input_field.dart';
 import 'package:flutter_auth/models/Payment.dart';
 
@@ -8,6 +9,8 @@ import 'package:flutter_auth/models/User.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Plan_setting extends StatelessWidget {
+  final UserRegister user;
+  Plan_setting({Key key, @required this.user}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Background(
@@ -16,9 +19,11 @@ class Plan_setting extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Text(
-              "SIGNUP",
-              style:
-                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+              "Set up your payment.",
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                  fontSize: 18),
             ),
             RoundedInputField(
               hintText: "First Name",
@@ -50,6 +55,11 @@ class Plan_setting extends StatelessWidget {
               rr: 0,
               onChanged: (value) {},
             ),
+            RoundedButton(
+              color: Color.fromRGBO(229, 9, 20, 1),
+              text: "Start membership",
+              press: () {},
+            )
           ],
         ),
       ),
@@ -62,7 +72,7 @@ Future<String> signUpHandler(UserRegister user, Payment payment) async {
     var dio = Dio();
     var response = await dio.post("https://netflix-cpe231.herokuapp.com/login",
         data: user.toJson());
-
+    print(response);
     if (response.statusCode != 200) {
       return "";
     }
