@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/json/profile.dart';
 import 'package:flutter_auth/models/Viewer.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../profile_user.dart';
@@ -52,63 +51,6 @@ class _SelectViewerPageState extends State<SelectViewerPage> {
     );
   }
 
-  // createAlertDialog(BuildContext context, bool incorrect, String pinNumber) {
-  //   return showDialog(
-  //     context: context,
-  //     builder: (context) {
-  //       return AlertDialog(
-  //         title: Text(
-  //           incorrect
-  //               ? "Incorrect PIN. Please try again."
-  //               : "Enter your PIN to access this profile.",
-  //           textAlign: TextAlign.center,
-  //           style: TextStyle(fontSize: 16),
-  //         ),
-  //         content: Wrap(
-  //           children: [
-  //             PinCodeTextField(
-  //               obscureText: true,
-  //               obscuringCharacter: '*',
-  //               animationType: AnimationType.fade,
-  //               blinkWhenObscuring: true,
-  //               enablePinAutofill: true,
-  //               appContext: context,
-  //               keyboardType: TextInputType.number,
-  //               length: 4,
-  //               onChanged: (value) {},
-  //               onCompleted: (value) {
-  //                 if (value == pinNumber) {
-  //                   Navigator.pushAndRemoveUntil(
-  //                     context,
-  //                     MaterialPageRoute(
-  //                       builder: (_) => RootApp(),
-  //                     ),
-  //                     (Route<dynamic> route) => false,
-  //                   );
-  //                 } else {
-  //                   Navigator.of(context).pop();
-  //                   createAlertDialog(context, true, pinNumber);
-  //                 }
-  //               },
-  //             ),
-  //             SizedBox(
-  //               height: 70,
-  //             ),
-  //             Text("Forget PIN?", textAlign: TextAlign.center),
-  //           ],
-  //         ),
-  //         actions: [
-  //           TextButton(
-  //               onPressed: () {
-  //                 Navigator.of(context).pop();
-  //               },
-  //               child: Text("Cancel"))
-  //         ],
-  //       );
-  //     },
-  //   );
-  // }
-
   Widget getBody(List<dynamic> viewers) {
     return Center(
       child: Padding(
@@ -129,14 +71,13 @@ class _SelectViewerPageState extends State<SelectViewerPage> {
                       (index) => Container(
                         child: GestureDetector(
                           onTap: () {
-                            // if (viewers[index].pinNumber != "") {
-                            //   createAlertDialog(
-                            //       context, false, viewers[index].pinNumber);
-                            // }
                             Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
-                                builder: (_) => RootApp(),
+                                builder: (context) => RootApp(
+                                  viewer: viewers[index].idViewer,
+                                  isKid: viewers[index].isKid,
+                                ),
                               ),
                               (Route<dynamic> route) => false,
                             );
@@ -165,13 +106,12 @@ class _SelectViewerPageState extends State<SelectViewerPage> {
                         (index) => Container(
                           child: GestureDetector(
                             onTap: () {
-                              // Navigator.pushAndRemoveUntil(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //     builder: (_) => RootApp(),
-                              //   ),
-                              //   (Route<dynamic> route) => false,
-                              // );
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => RootApp(),
+                                ),
+                              );
                             },
                             child: Center(
                               child: Text(
@@ -223,19 +163,3 @@ Future<String> getEmailFromToken() async {
   final prefs = await SharedPreferences.getInstance();
   return prefs.getString('tokenUser');
 }
-
-// Future<String> getToken(String email, String password) async {
-//   try {
-//     var dio = Dio();
-//     var formData = FormData.fromMap({'username': email, 'password': password});
-//     var response = await dio.post("https://netflix-cpe231.herokuapp.com/login",
-//         data: formData);
-
-//     if (response.statusCode != 200) {
-//       return "";
-//     }
-//     return response.data['token'];
-//   } catch (e) {
-//     return "";
-//   }
-// }

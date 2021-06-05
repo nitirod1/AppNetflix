@@ -1,16 +1,26 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/json/root_app_json.dart';
 import 'package:flutter_auth/pages/comingsoon_page.dart';
 import 'package:flutter_auth/pages/home_page.dart';
 import 'package:flutter_auth/pages/search_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+String token;
 
 class RootApp extends StatefulWidget {
+  final int viewer;
+  final bool isKid;
+
+  const RootApp({Key key, this.viewer, this.isKid}) : super(key: key);
+
   @override
   _RootAppState createState() => _RootAppState();
 }
 
 class _RootAppState extends State<RootApp> {
   int activeTab = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +34,10 @@ class _RootAppState extends State<RootApp> {
   Widget getBody() {
     //ทำการให้แถบข้างล่างเชื่อมโยงไปหน้าอื่น
     return IndexedStack(index: activeTab, children: [
-      HomePage(),
+      HomePage(
+        isKid: widget.isKid,
+        viewer: widget.viewer,
+      ),
       ComingSoonPage(),
       SearchPage(),
       Center(
