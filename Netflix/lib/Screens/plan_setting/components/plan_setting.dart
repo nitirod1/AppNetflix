@@ -9,8 +9,8 @@ import 'package:flutter_auth/models/User.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Plan_setting extends StatelessWidget {
-  final UserRegister user;
-  Plan_setting({Key key, @required this.user}) : super(key: key);
+  final int plan_id;
+  Plan_setting({Key key, @required this.plan_id}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Background(
@@ -29,7 +29,9 @@ class Plan_setting extends StatelessWidget {
               hintText: "First Name",
               icon: Icons.account_circle_outlined,
               rr: 0,
-              onChanged: (value) {},
+              onChanged: (value) {
+                print(plan_id);
+              },
             ),
             RoundedInputField(
               icon: Icons.lock_open_outlined,
