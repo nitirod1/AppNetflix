@@ -52,62 +52,62 @@ class _SelectViewerPageState extends State<SelectViewerPage> {
     );
   }
 
-  createAlertDialog(BuildContext context, bool incorrect, String pinNumber) {
-    return showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text(
-            incorrect
-                ? "Incorrect PIN. Please try again."
-                : "Enter your PIN to access this profile.",
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 16),
-          ),
-          content: Wrap(
-            children: [
-              PinCodeTextField(
-                obscureText: true,
-                obscuringCharacter: '*',
-                animationType: AnimationType.fade,
-                blinkWhenObscuring: true,
-                enablePinAutofill: true,
-                appContext: context,
-                keyboardType: TextInputType.number,
-                length: 4,
-                onChanged: (value) {},
-                onCompleted: (value) {
-                  if (value == pinNumber) {
-                    Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => RootApp(),
-                      ),
-                      (Route<dynamic> route) => false,
-                    );
-                  } else {
-                    Navigator.of(context).pop();
-                    createAlertDialog(context, true, pinNumber);
-                  }
-                },
-              ),
-              SizedBox(
-                height: 70,
-              ),
-              Text("Forget PIN?", textAlign: TextAlign.center),
-            ],
-          ),
-          actions: [
-            TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text("Cancel"))
-          ],
-        );
-      },
-    );
-  }
+  // createAlertDialog(BuildContext context, bool incorrect, String pinNumber) {
+  //   return showDialog(
+  //     context: context,
+  //     builder: (context) {
+  //       return AlertDialog(
+  //         title: Text(
+  //           incorrect
+  //               ? "Incorrect PIN. Please try again."
+  //               : "Enter your PIN to access this profile.",
+  //           textAlign: TextAlign.center,
+  //           style: TextStyle(fontSize: 16),
+  //         ),
+  //         content: Wrap(
+  //           children: [
+  //             PinCodeTextField(
+  //               obscureText: true,
+  //               obscuringCharacter: '*',
+  //               animationType: AnimationType.fade,
+  //               blinkWhenObscuring: true,
+  //               enablePinAutofill: true,
+  //               appContext: context,
+  //               keyboardType: TextInputType.number,
+  //               length: 4,
+  //               onChanged: (value) {},
+  //               onCompleted: (value) {
+  //                 if (value == pinNumber) {
+  //                   Navigator.pushAndRemoveUntil(
+  //                     context,
+  //                     MaterialPageRoute(
+  //                       builder: (_) => RootApp(),
+  //                     ),
+  //                     (Route<dynamic> route) => false,
+  //                   );
+  //                 } else {
+  //                   Navigator.of(context).pop();
+  //                   createAlertDialog(context, true, pinNumber);
+  //                 }
+  //               },
+  //             ),
+  //             SizedBox(
+  //               height: 70,
+  //             ),
+  //             Text("Forget PIN?", textAlign: TextAlign.center),
+  //           ],
+  //         ),
+  //         actions: [
+  //           TextButton(
+  //               onPressed: () {
+  //                 Navigator.of(context).pop();
+  //               },
+  //               child: Text("Cancel"))
+  //         ],
+  //       );
+  //     },
+  //   );
+  // }
 
   Widget getBody(List<dynamic> viewers) {
     return Center(
@@ -129,10 +129,17 @@ class _SelectViewerPageState extends State<SelectViewerPage> {
                       (index) => Container(
                         child: GestureDetector(
                           onTap: () {
-                            if (viewers[index].pinNumber != "") {
-                              createAlertDialog(
-                                  context, false, viewers[index].pinNumber);
-                            }
+                            // if (viewers[index].pinNumber != "") {
+                            //   createAlertDialog(
+                            //       context, false, viewers[index].pinNumber);
+                            // }
+                            Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => RootApp(),
+                              ),
+                              (Route<dynamic> route) => false,
+                            );
                           },
                         ),
                         decoration: BoxDecoration(
