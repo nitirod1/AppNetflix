@@ -8,9 +8,9 @@ import 'package:flutter_auth/components/rounded_input_field.dart';
 import 'package:flutter_auth/components/rounded_password_field.dart';
 import 'package:flutter_auth/Screens/select_package/package_screen.dart';
 import 'package:flutter_auth/models/User.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Body extends StatelessWidget {
-  UserRegister user;
   String email;
   String password;
   @override
@@ -47,16 +47,31 @@ class Body extends StatelessWidget {
             RoundedButton(
               color: Color.fromRGBO(229, 9, 20, 1),
               text: "SIGNUP",
-              press: () {
-                SendData(email, password);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return Package_screen();
-                    },
-                  ),
-                );
+              press: () async {
+                String token = await RegisterUser(email, password);
+                print(token);
+                // if (token == "email has register") {
+                //   Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //       builder: (context) {
+                //         return LoginScreen();
+                //       },
+                //     ),
+                //   );
+                // }
+                if (token != null) {
+                  final prefs = await SharedPreferences.getInstance();
+                  prefs.setString('tokenUser', token);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return Package_screen();
+                      },
+                    ),
+                  );
+                }
               },
             ),
             SizedBox(height: size.height * 0.03),
@@ -80,19 +95,19 @@ class Body extends StatelessWidget {
   }
 }
 
-// TODO: update email check
-Future<String> SendData(String email, String password) async {
+Future<String> RegisterUser(String email, String password) async {
   try {
     var dio = Dio();
-    var formData = FormData.fromMap({'username': email, 'password': password});
-    var response = await dio.post("https://netflix-cpe231.herokuapp.com/login",
-        data: formData);
+    var response = await dio.post(
+        "https://netflix-cpe231.herokuapp.com/login/register",
+        data: {'email': email, 'password': password});
     if (response.statusCode != 200) {
       print("error");
       return "";
     }
+
     return response.data['token'];
   } catch (e) {
-    print(e);
+    print(e.toString());
   }
 }

@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/select_package/components/select_package.dart';
-import 'package:flutter_auth/models/User.dart';
 
 class Package_screen extends StatelessWidget {
-  String email;
-  String password;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

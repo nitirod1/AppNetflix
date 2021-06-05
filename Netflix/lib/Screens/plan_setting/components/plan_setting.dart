@@ -5,11 +5,20 @@ import 'package:flutter_auth/components/rounded_button.dart';
 import 'package:flutter_auth/components/rounded_input_field.dart';
 import 'package:flutter_auth/models/Payment.dart';
 
-import 'package:flutter_auth/models/User.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../Movie.dart';
+
 class Plan_setting extends StatelessWidget {
-  final int plan_id;
+  String firstName;
+  String lastName;
+  String cardNumber;
+  String expDate;
+  String cvcCode;
+  String phoneNumber;
+
+  int plan_id;
+
   Plan_setting({Key key, @required this.plan_id}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -30,37 +39,73 @@ class Plan_setting extends StatelessWidget {
               icon: Icons.account_circle_outlined,
               rr: 0,
               onChanged: (value) {
-                print(plan_id);
+                firstName = value;
               },
             ),
             RoundedInputField(
               icon: Icons.lock_open_outlined,
               hintText: "Last Name",
               rr: 0,
-              onChanged: (value) {},
+              onChanged: (value) {
+                lastName = value;
+              },
             ),
             RoundedInputField(
               icon: Icons.credit_card,
               hintText: "Card number",
               rr: 0,
-              onChanged: (value) {},
+              onChanged: (value) {
+                cardNumber = value;
+              },
             ),
             RoundedInputField(
               icon: Icons.info,
               hintText: "Expiration date (month/years)",
               rr: 0,
-              onChanged: (value) {},
+              onChanged: (value) {
+                expDate = value;
+              },
             ),
             RoundedInputField(
               icon: Icons.lock_rounded,
-              hintText: "Security",
+              hintText: "Security Code",
               rr: 0,
-              onChanged: (value) {},
+              onChanged: (value) {
+                cvcCode = value;
+              },
+            ),
+            RoundedInputField(
+              icon: Icons.lock_rounded,
+              hintText: "Phone",
+              rr: 0,
+              onChanged: (value) {
+                phoneNumber = value;
+              },
             ),
             RoundedButton(
               color: Color.fromRGBO(229, 9, 20, 1),
               text: "Start membership",
-              press: () {},
+              press: () async {
+                var result = await setPayment(Payment(
+                    firstname: firstName,
+                    lastname: lastName,
+                    cardNumber: cardNumber,
+                    planId: plan_id,
+                    cvcCode: cvcCode,
+                    expDate: expDate,
+                    phoneNumber: phoneNumber));
+                if (result == true) {
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return Main_movie(); // TODO: return viewer
+                      },
+                    ),
+                    (Route<dynamic> route) => false,
+                  );
+                }
+              },
             )
           ],
         ),
@@ -69,32 +114,25 @@ class Plan_setting extends StatelessWidget {
   }
 }
 
-Future<String> signUpHandler(UserRegister user, Payment payment) async {
+Future<bool> setPayment(Payment payment) async {
   try {
     var dio = Dio();
-    var response = await dio.post("https://netflix-cpe231.herokuapp.com/login",
-        data: user.toJson());
-    print(response);
-    if (response.statusCode != 200) {
-      return "";
-    }
-    var token = response.data['token'];
 
-    response =
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('tokenUser');
+
+    var response =
         await dio.post("https://netflix-cpe231.herokuapp.com/user/payment",
             data: payment.toJson(),
             options: Options(headers: {
               'Authorization': 'Bearer $token',
             }));
     if (response.statusCode != 200) {
-      return "";
+      return false;
     }
 
-    final prefs = await SharedPreferences.getInstance();
-    prefs.setString('tokenUser', token);
-
-    return token;
+    return true;
   } catch (e) {
-    return "";
+    return false;
   }
 }
