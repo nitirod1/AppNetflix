@@ -75,8 +75,6 @@ var dataSource = BetterPlayerDataSource(
   BetterPlayerDataSourceType.network,
   "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
   liveStream: false,
-  //useAsmsSubtitles: true,
-  //asmsTrackNames: ["Low quality", "Not so low quality", "Medium quality"],
   subtitles: [
     BetterPlayerSubtitlesSource(
       type: BetterPlayerSubtitlesSourceType.network,
