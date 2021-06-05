@@ -53,13 +53,14 @@ class Body extends StatelessWidget {
                 if (token != "") {
                   final prefs = await SharedPreferences.getInstance();
                   prefs.setString('tokenUser', token);
-                  Navigator.push(
+                  Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
                       builder: (context) {
                         return Main_movie(); // TODO: return viewer
                       },
                     ),
+                    (Route<dynamic> route) => false,
                   );
                 }
               },

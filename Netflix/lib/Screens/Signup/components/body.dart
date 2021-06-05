@@ -80,6 +80,7 @@ class Body extends StatelessWidget {
   }
 }
 
+// TODO: update email check
 Future<String> SendData(String email, String password) async {
   try {
     var dio = Dio();
