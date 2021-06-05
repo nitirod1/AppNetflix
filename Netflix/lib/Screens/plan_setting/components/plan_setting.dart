@@ -5,20 +5,19 @@ import 'package:flutter_auth/components/rounded_button.dart';
 import 'package:flutter_auth/components/rounded_input_field.dart';
 import 'package:flutter_auth/models/Payment.dart';
 
-import 'package:flutter_auth/models/User.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../Movie.dart';
 
 class Plan_setting extends StatelessWidget {
-  final int plan_id;
-
   String firstName;
   String lastName;
   String cardNumber;
   String expDate;
   String cvcCode;
   String phoneNumber;
+
+  int plan_id;
 
   Plan_setting({Key key, @required this.plan_id}) : super(key: key);
   @override

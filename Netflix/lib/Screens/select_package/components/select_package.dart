@@ -39,8 +39,8 @@ class _Select_packageState extends State<Select_package> {
   Color color_click_text = Colors.redAccent;
   Color bg_box = Colors.white;
   final isSelected = <bool>[false, false, false, false];
-  String email;
-  String password;
+  int plan_id = 0;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -56,7 +56,9 @@ class _Select_packageState extends State<Select_package> {
                   "Mobile\n\n Good video quality in SD(480p). Watch on any phone or tablet. Computer and TV not included. \nTHB99/month",
                   style: TextStyle(color: Colors.white),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  plan_id = 1;
+                },
                 //onPressed: null, //Uncomment this statement to check disabled state.
                 style: ButtonStyle(
                   backgroundColor:
@@ -96,7 +98,10 @@ class _Select_packageState extends State<Select_package> {
                   "Mobile\n\n Good video quality in SD(480p). Watch on any phone or tablet. Computer and TV not included. \nTHB99/month",
                   style: TextStyle(color: color_text),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  plan_id = 2;
+                },
+
                 //onPressed: null, //Uncomment this statement to check disabled state.
                 style: ButtonStyle(
                   backgroundColor:
@@ -136,7 +141,9 @@ class _Select_packageState extends State<Select_package> {
                   "Mobile\n\n Good video quality in SD(480p). Watch on any phone or tablet. Computer and TV not included. \nTHB99/month",
                   style: TextStyle(color: Colors.white),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  plan_id = 3;
+                },
                 //onPressed: null, //Uncomment this statement to check disabled state.
                 style: ButtonStyle(
                   backgroundColor:
@@ -176,7 +183,9 @@ class _Select_packageState extends State<Select_package> {
                   "Mobile\n\n Good video quality in SD(480p). Watch on any phone or tablet. Computer and TV not included. \nTHB99/month",
                   style: TextStyle(color: Colors.white),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  plan_id = 4;
+                },
                 //onPressed: null, //Uncomment this statement to check disabled state.
                 style: ButtonStyle(
                   backgroundColor:
@@ -221,7 +230,9 @@ class _Select_packageState extends State<Select_package> {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return Plan_screen(value: value);
+                        return Plan_screen(
+                          value: plan_id,
+                        );
                       },
                     ),
                   );
