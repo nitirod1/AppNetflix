@@ -56,13 +56,7 @@ class _MylistPageState extends State<MylistPage> {
             mylistTest.length,
             (index) => Container(
               child: GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (_) => VideoDetailPage(
-                              videoUrl: originalList[index]["url"])));
-                },
+                onTap: () {},
               ),
               decoration: BoxDecoration(
                 color: Colors.green,

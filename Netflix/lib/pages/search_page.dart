@@ -129,14 +129,7 @@ class _SearchPageState extends State<SearchPage> {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (_) => VideoDetailPage(
-                                      videoUrl: (searchJson[index]["video"]),
-                                    )));
-                      },
+                      onTap: () {},
                       child: Container(
                         width: (size.width - 36) * 0.2,
                         height: 80,

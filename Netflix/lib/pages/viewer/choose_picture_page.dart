@@ -61,14 +61,7 @@ class _ChoosePicturePageState extends State<ChoosePicturePage> {
                             width: 110,
                             height: 160,
                             child: GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (_) => VideoDetailPage(
-                                            videoUrl: popularList[index]
-                                                ["url"])));
-                              },
+                              onTap: () {},
                             ),
                             decoration: BoxDecoration(
                               color: Colors.green,
