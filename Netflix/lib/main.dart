@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/Movie.dart';
 import 'package:flutter_auth/constants.dart';
-import 'package:flutter_auth/pages/profile_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Screens/Welcome/welcome_screen.dart';
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         future: loadTokenUser(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.data) {
-            return Profile(); // TODO: return viewer
+            return Main_movie(); // TODO: return viewer
           }
           return WelcomeScreen();
         },

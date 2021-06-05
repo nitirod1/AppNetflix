@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/select_package/components/background.dart';
 import 'package:flutter_auth/Screens/plan_setting/plan_screen.dart';
+import 'package:flutter_auth/models/User.dart';
 
 class Information_Plan extends StatelessWidget {
   final String text;
@@ -33,283 +34,201 @@ class Select_package extends StatefulWidget {
 }
 
 class _Select_packageState extends State<Select_package> {
-  final Color color_text = Colors.white;
-  bool isVisible_mobile = false;
-
-  bool isVisible_standard = false;
-
-  bool isVisible_high = false;
-
-  bool isVisible_premiere = false;
-
-  get text => null;
-
+  Color color_text = Colors.red;
+  int value = 1;
+  Color color_click_text = Colors.redAccent;
+  Color bg_box = Colors.white;
+  final isSelected = <bool>[false, false, false, false];
+  String email;
+  String password;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Background(
       child: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              "Choose the plan that’s right for you",
-              style: TextStyle(color: Colors.white),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.only(left: 120, right: 1),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.all(1.0),
-                      primary: Colors.red,
-                      textStyle: const TextStyle(fontSize: 16),
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return Plan_screen();
-                          },
-                        ),
-                      );
-                    },
-                    child: const Text('Moblie'),
-                  ),
+            Container(
+              margin: EdgeInsets.all(20),
+              child: OutlinedButton(
+                child: Text(
+                  "Mobile\n\n Good video quality in SD(480p). Watch on any phone or tablet. Computer and TV not included. \nTHB99/month",
+                  style: TextStyle(color: Colors.white),
                 ),
-                Container(
-                  margin: EdgeInsets.only(right: 1),
-                  child: ElevatedButton(
-                    style: TextButton.styleFrom(
-                      padding: const EdgeInsets.all(1.0),
-                      primary: Colors.white,
-                      textStyle: const TextStyle(fontSize: 16),
-                    ),
-                    onPressed: () {},
-                    child: const Text('Basic'),
-                  ),
+                onPressed: () {},
+                //onPressed: null, //Uncomment this statement to check disabled state.
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.resolveWith<Color>((states) {
+                    if (states.contains(MaterialState.disabled)) {
+                      return Colors.grey[100];
+                    }
+                    return bg_box;
+                  }),
+                  overlayColor:
+                      MaterialStateProperty.resolveWith<Color>((states) {
+                    if (states.contains(MaterialState.pressed)) {
+                      return Colors.red;
+                    }
+                    return Colors.transparent;
+                  }),
+                  side: MaterialStateProperty.resolveWith((states) {
+                    Color _borderColor;
+
+                    if (states.contains(MaterialState.disabled)) {
+                      _borderColor = Colors.greenAccent;
+                    } else if (states.contains(MaterialState.pressed)) {
+                      _borderColor = color_click_text;
+                    } else {
+                      _borderColor = color_text;
+                    }
+
+                    return BorderSide(color: _borderColor, width: 3);
+                  }),
                 ),
-                Container(
-                  margin: EdgeInsets.only(right: 2),
-                  child: ElevatedButton(
-                    style: TextButton.styleFrom(
-                      padding: const EdgeInsets.all(1.0),
-                      primary: Colors.white,
-                      textStyle: const TextStyle(fontSize: 16),
-                    ),
-                    onPressed: () {},
-                    child: const Text('Standard'),
-                  ),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.all(20),
+              child: OutlinedButton(
+                child: Text(
+                  "Mobile\n\n Good video quality in SD(480p). Watch on any phone or tablet. Computer and TV not included. \nTHB99/month",
+                  style: TextStyle(color: color_text),
                 ),
-                Container(
-                  margin: EdgeInsets.only(right: 1),
-                  child: ElevatedButton(
-                    style: TextButton.styleFrom(
-                      padding: const EdgeInsets.all(1.0),
-                      primary: Colors.white,
-                      textStyle: const TextStyle(fontSize: 16),
-                    ),
-                    onPressed: () {},
-                    child: const Text('Premium'),
-                  ),
+                onPressed: () {},
+                //onPressed: null, //Uncomment this statement to check disabled state.
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.resolveWith<Color>((states) {
+                    if (states.contains(MaterialState.disabled)) {
+                      return Colors.grey[100];
+                    }
+                    return bg_box;
+                  }),
+                  overlayColor:
+                      MaterialStateProperty.resolveWith<Color>((states) {
+                    if (states.contains(MaterialState.pressed)) {
+                      return Colors.red;
+                    }
+                    return Colors.transparent;
+                  }),
+                  side: MaterialStateProperty.resolveWith((states) {
+                    Color _borderColor;
+
+                    if (states.contains(MaterialState.disabled)) {
+                      _borderColor = Colors.greenAccent;
+                    } else if (states.contains(MaterialState.pressed)) {
+                      _borderColor = color_click_text;
+                    } else {
+                      _borderColor = color_text;
+                    }
+
+                    return BorderSide(color: _borderColor, width: 3);
+                  }),
                 ),
-              ],
+              ),
             ),
-            Column(
-              children: [
-                Row(
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(15, 10, 5, 10),
-                      child: Text(
-                        "Monthly price",
-                        style: TextStyle(color: color_text),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(25, 10, 5, 10),
-                      child: Text(
-                        "THB99",
-                        style: TextStyle(color: color_text, fontSize: 16),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(5, 10, 5, 10),
-                      child: Text(
-                        "THB279",
-                        style: TextStyle(color: color_text, fontSize: 16),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(5, 20, 5, 20),
-                      child: Text(
-                        "THB349",
-                        style: TextStyle(color: color_text, fontSize: 16),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(5, 20, 20, 20),
-                      child: Text(
-                        "THB419",
-                        style: TextStyle(color: color_text, fontSize: 16),
-                      ),
-                    ),
-                  ],
-                )
-              ],
-            ),
-            Column(
-              children: [
-                Row(
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(15, 10, 5, 10),
-                      child: Text(
-                        "Video quality",
-                        style: TextStyle(color: color_text),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(35, 10, 5, 10),
-                      child: Text(
-                        "Good",
-                        style: TextStyle(color: color_text, fontSize: 16),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(20, 10, 5, 10),
-                      child: Text(
-                        "Good",
-                        style: TextStyle(color: color_text, fontSize: 16),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(20, 20, 5, 20),
-                      child: Text(
-                        "Better",
-                        style: TextStyle(color: color_text, fontSize: 16),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(25, 20, 20, 20),
-                      child: Text(
-                        "Best",
-                        style: TextStyle(color: color_text, fontSize: 16),
-                      ),
-                    ),
-                  ],
-                )
-              ],
-            ),
-            Column(
-              children: [
-                Row(
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(15, 10, 5, 10),
-                      child: Text(
-                        "Resolution",
-                        style: TextStyle(color: color_text),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(50, 10, 5, 10),
-                      child: Text(
-                        "480p",
-                        style: TextStyle(color: color_text, fontSize: 16),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(25, 10, 5, 10),
-                      child: Text(
-                        "480p",
-                        style: TextStyle(color: color_text, fontSize: 16),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(20, 20, 5, 20),
-                      child: Text(
-                        "1080p",
-                        style: TextStyle(color: color_text, fontSize: 16),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(10, 20, 20, 20),
-                      child: Text(
-                        "4K+HDR",
-                        style: TextStyle(color: color_text, fontSize: 16),
-                      ),
-                    ),
-                  ],
-                )
-              ],
-            ),
-            Column(
-              children: [
-                Row(
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(15, 10, 5, 10),
-                      child: Text(
-                        "Devices you\ncanuse to\nwatch",
-                        style: TextStyle(color: color_text, fontSize: 16),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(25, 10, 5, 10),
-                      child: Text(
-                        "THB99",
-                        style: TextStyle(color: color_text, fontSize: 16),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(5, 10, 5, 10),
-                      child: Text(
-                        "THB279",
-                        style: TextStyle(color: color_text, fontSize: 16),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(5, 20, 5, 20),
-                      child: Text(
-                        "THB349",
-                        style: TextStyle(color: color_text, fontSize: 16),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(5, 20, 20, 20),
-                      child: Text(
-                        "THB419",
-                        style: TextStyle(color: Colors.black54, fontSize: 16),
-                      ),
-                    ),
-                  ],
-                )
-              ],
-            ),
-            Column(
-              children: <Widget>[
-                ElevatedButton(
-                  style: TextButton.styleFrom(
-                    padding: const EdgeInsets.all(1.0),
-                    primary: Colors.white,
-                    textStyle: const TextStyle(fontSize: 20),
-                  ),
-                  onPressed: () {
-                    setState(() => isVisible_mobile = !isVisible_mobile);
-                  },
-                  child: const Text('Visible'),
+            Container(
+              margin: EdgeInsets.all(20),
+              child: OutlinedButton(
+                child: Text(
+                  "Mobile\n\n Good video quality in SD(480p). Watch on any phone or tablet. Computer and TV not included. \nTHB99/month",
+                  style: TextStyle(color: Colors.white),
                 ),
-                Visibility(
-                  visible: isVisible_mobile,
-                  child: Information_Plan(
-                      text: 'sasdsad\n sasdsa\n', color_: Colors.red),
-                )
-              ],
-            )
+                onPressed: () {},
+                //onPressed: null, //Uncomment this statement to check disabled state.
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.resolveWith<Color>((states) {
+                    if (states.contains(MaterialState.disabled)) {
+                      return Colors.grey[100];
+                    }
+                    return Colors.blue;
+                  }),
+                  overlayColor:
+                      MaterialStateProperty.resolveWith<Color>((states) {
+                    if (states.contains(MaterialState.pressed)) {
+                      return Colors.red;
+                    }
+                    return Colors.transparent;
+                  }),
+                  side: MaterialStateProperty.resolveWith((states) {
+                    Color _borderColor;
+
+                    if (states.contains(MaterialState.disabled)) {
+                      _borderColor = Colors.greenAccent;
+                    } else if (states.contains(MaterialState.pressed)) {
+                      _borderColor = Colors.yellow;
+                    } else {
+                      _borderColor = Colors.pinkAccent;
+                    }
+
+                    return BorderSide(color: _borderColor, width: 3);
+                  }),
+                ),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.all(20),
+              child: OutlinedButton(
+                child: Text(
+                  "Mobile\n\n Good video quality in SD(480p). Watch on any phone or tablet. Computer and TV not included. \nTHB99/month",
+                  style: TextStyle(color: Colors.white),
+                ),
+                onPressed: () {},
+                //onPressed: null, //Uncomment this statement to check disabled state.
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.resolveWith<Color>((states) {
+                    if (states.contains(MaterialState.disabled)) {
+                      return Colors.grey[100];
+                    }
+                    return Colors.blue;
+                  }),
+                  overlayColor:
+                      MaterialStateProperty.resolveWith<Color>((states) {
+                    if (states.contains(MaterialState.pressed)) {
+                      return Colors.red;
+                    }
+                    return Colors.transparent;
+                  }),
+                  side: MaterialStateProperty.resolveWith((states) {
+                    Color _borderColor;
+
+                    if (states.contains(MaterialState.disabled)) {
+                      _borderColor = Colors.greenAccent;
+                    } else if (states.contains(MaterialState.pressed)) {
+                      _borderColor = Colors.yellow;
+                    } else {
+                      _borderColor = Colors.pinkAccent;
+                    }
+
+                    return BorderSide(color: _borderColor, width: 3);
+                  }),
+                ),
+              ),
+            ),
+            Container(
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.all(1.0),
+                  primary: Colors.red,
+                  textStyle: const TextStyle(fontSize: 16),
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return Plan_screen(value: value);
+                      },
+                    ),
+                  );
+                },
+                child: const Text('Continue'),
+              ),
+            ),
           ],
         ),
       ),
