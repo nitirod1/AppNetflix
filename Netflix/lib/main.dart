@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/Movie.dart';
 import 'package:flutter_auth/constants.dart';
+import 'package:flutter_auth/pages/viewer/select_viewer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Screens/Welcome/welcome_screen.dart';
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         future: loadTokenUser(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.data) {
-            return Main_movie(); // TODO: return viewer
+            return SelectViewerPage(); // TODO: return viewer
           }
           return WelcomeScreen();
         },
@@ -32,6 +32,7 @@ class MyApp extends StatelessWidget {
   Future<bool> loadTokenUser() async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('tokenUser');
+
     return token != null;
   }
 }

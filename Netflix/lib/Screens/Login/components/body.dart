@@ -6,7 +6,7 @@ import 'package:flutter_auth/components/already_have_an_account_acheck.dart';
 import 'package:flutter_auth/components/rounded_button.dart';
 import 'package:flutter_auth/components/rounded_input_field.dart';
 import 'package:flutter_auth/components/rounded_password_field.dart';
-import 'package:flutter_auth/Movie.dart';
+import 'package:flutter_auth/pages/viewer/select_viewer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Body extends StatelessWidget {
@@ -57,7 +57,7 @@ class Body extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return Main_movie(); // TODO: return viewer
+                        return SelectViewerPage();
                       },
                     ),
                     (Route<dynamic> route) => false,
