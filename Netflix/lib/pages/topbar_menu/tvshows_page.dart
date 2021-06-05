@@ -208,16 +208,7 @@ class _TVShowsPageState extends State<TVShowsPage> {
                           ),
                         ),
                         GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (_) => VideoDetailPage(
-                                  videoUrl: "assets/videos/video_1.mp4",
-                                ),
-                              ),
-                            );
-                          },
+                          onTap: () {},
                           child: Column(
                             children: [
                               Icon(
@@ -267,14 +258,7 @@ class _TVShowsPageState extends State<TVShowsPage> {
                                 width: 110,
                                 height: 160,
                                 child: GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (_) => VideoDetailPage(
-                                                videoUrl: listHitNetflix[index]
-                                                    ["url"])));
-                                  },
+                                  onTap: () {},
                                 ),
                                 decoration: BoxDecoration(
                                   color: Colors.green,
@@ -317,14 +301,7 @@ class _TVShowsPageState extends State<TVShowsPage> {
                                 width: 110,
                                 height: 160,
                                 child: GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (_) => VideoDetailPage(
-                                                videoUrl: popularList[index]
-                                                    ["url"])));
-                                  },
+                                  onTap: () {},
                                 ),
                                 decoration: BoxDecoration(
                                   color: Colors.green,
@@ -368,16 +345,7 @@ class _TVShowsPageState extends State<TVShowsPage> {
                                 height: 160,
                                 alignment: Alignment.bottomRight,
                                 child: GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (_) => VideoDetailPage(
-                                          videoUrl: trendingList[index]["url"],
-                                        ),
-                                      ),
-                                    );
-                                  },
+                                  onTap: () {},
                                   child: Stack(
                                     children: [
                                       Text(
@@ -439,17 +407,7 @@ class _TVShowsPageState extends State<TVShowsPage> {
                                     width: 165,
                                     height: 300,
                                     child: GestureDetector(
-                                      onTap: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (_) => VideoDetailPage(
-                                              videoUrl: originalList[index]
-                                                  ["url"],
-                                            ),
-                                          ),
-                                        );
-                                      },
+                                      onTap: () {},
                                     ),
                                     decoration: BoxDecoration(
                                       color: Colors.green,

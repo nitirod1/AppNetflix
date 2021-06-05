@@ -244,8 +244,10 @@ class _HomePageState extends State<HomePage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (_) => VideoDetailPage(
-                                videoUrl: listHitNetflix[index]["url"])),
+                          builder: (_) => VideoDetailPage(
+                            idMovie: snapshot.data[index].idMovie,
+                          ),
+                        ),
                       );
                     },
                     child: Container(
@@ -305,9 +307,10 @@ class _HomePageState extends State<HomePage> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (_) => VideoDetailPage(
-                                        videoUrl: listHitNetflix[index]
-                                            ["url"])),
+                                  builder: (_) => VideoDetailPage(
+                                    idMovie: snapshot.data[index].idMovie,
+                                  ),
+                                ),
                               );
                             },
                             child: ClipRRect(
@@ -405,16 +408,7 @@ class RowFirstMovie extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => VideoDetailPage(
-                    videoUrl: "assets/videos/video_1.mp4",
-                  ),
-                ),
-              );
-            },
+            onTap: () {},
             child: Column(
               children: [
                 Icon(
