@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/Screens/Welcome/welcome_screen.dart';
+import 'package:flutter_auth/Movie.dart';
 import 'package:flutter_auth/constants.dart';
-import 'package:flutter_auth/pages/root_app.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'Screens/Welcome/welcome_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,8 +13,25 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark(),
-      home: RootApp(),
+      theme: ThemeData(
+        primaryColor: kPrimaryLightColor,
+        scaffoldBackgroundColor: kPrimaryColor,
+      ),
+      home: FutureBuilder(
+        future: loadTokenUser(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.data) {
+            return Main_movie(); // TODO: return viewer
+          }
+          return WelcomeScreen();
+        },
+      ),
     );
+  }
+
+  Future<bool> loadTokenUser() async {
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('tokenUser');
+    return token != null;
   }
 }
