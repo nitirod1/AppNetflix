@@ -1,5 +1,5 @@
-class MovieDetail {
-  MovieDetail({
+class MovieHistory {
+  MovieHistory({
     this.idHistory,
     this.idEpisode,
     this.stopTime,
@@ -21,7 +21,7 @@ class MovieDetail {
   bool isSeries;
   String posterUrl;
 
-  factory MovieDetail.fromJson(Map<String, dynamic> json) => MovieDetail(
+  factory MovieHistory.fromJson(Map<String, dynamic> json) => MovieHistory(
         idHistory: json["id_history"],
         idEpisode: json["id_episode"],
         stopTime: json["stop_time"],

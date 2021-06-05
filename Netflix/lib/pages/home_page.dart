@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/json/home_json.dart';
 import 'package:flutter_auth/models/Movie.dart';
-import 'package:flutter_auth/models/MovieDetail.dart';
+import 'package:flutter_auth/models/MovieHistory.dart';
 import 'package:flutter_auth/pages/topbar_menu/movie_page.dart';
 import 'package:flutter_auth/pages/topbar_menu/mylist_page.dart';
 import 'package:flutter_auth/pages/profile_page.dart';
@@ -367,9 +367,10 @@ class _HomePageState extends State<HomePage> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (_) => VideoDetailPage(
-                                        videoUrl: listHitNetflix[index]
-                                            ["url"])),
+                                  builder: (_) => VideoDetailPage(
+                                    idMovie: snapshot.data[index].idMovie,
+                                  ),
+                                ),
                               );
                             },
                             child: ClipRRect(
@@ -502,7 +503,7 @@ Future<List<dynamic>> getDetailToken(int idHistory, int viewer) async {
 
     for (int i = 0; i < response.data.length; i++) {
       // viewers.add(Viewer.fromJson(response.data[i]));
-      listMovie.add(MovieDetail.fromJson(response.data[i]));
+      listMovie.add(MovieHistory.fromJson(response.data[i]));
     }
     print(listMovie);
     return listMovie;
