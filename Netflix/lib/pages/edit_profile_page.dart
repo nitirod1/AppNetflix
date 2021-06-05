@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/json/profile.dart';
+import 'package:flutter_auth/pages/video_detail_page.dart';
 
 class EditProfilePage extends StatefulWidget {
   @override
@@ -70,17 +71,25 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         borderRadius: BorderRadius.circular(6),
                       ),
                       alignment: Alignment.bottomRight,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(6),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => VideoDetailPage()));
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                          child: Icon(
+                            Icons.edit,
+                            color: Colors.black,
+                          ),
+                          width: 30,
+                          height: 30,
                         ),
-                        child: Icon(
-                          Icons.edit,
-                          color: Colors.black,
-                        ),
-                        width: 30,
-                        height: 30,
                       ),
                       width: 120,
                       height: 120,
@@ -104,6 +113,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
+                  style: TextStyle(color: Colors.white),
                   initialValue: "ชื่อเก่า",
                   decoration: InputDecoration(
                     border: InputBorder.none,
@@ -129,6 +139,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
               children: [
                 Icon(
                   Icons.delete_sharp,
+                  color: Colors.white,
                 ),
                 SizedBox(
                   width: 7,
@@ -138,6 +149,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
+                    color: Colors.white,
                   ),
                 )
               ],

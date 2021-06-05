@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/json/home_json.dart';
-import 'package:flutter_auth/pages/profile_page.dart';
 import 'package:flutter_auth/json/mylist_json.dart';
+import 'package:flutter_auth/pages/profile_page.dart';
 import 'package:flutter_auth/pages/video_detail_page.dart';
 
-class TVShowsPage extends StatefulWidget {
+class MylistPage extends StatefulWidget {
   @override
-  _TVShowsPageState createState() => _TVShowsPageState();
+  _MylistPageState createState() => _MylistPageState();
 }
 
-class _TVShowsPageState extends State<TVShowsPage> {
+class _MylistPageState extends State<MylistPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +26,7 @@ class _TVShowsPageState extends State<TVShowsPage> {
       backgroundColor: Colors.black,
       elevation: 0,
       title: Text(
-        "TV Show",
+        "My List",
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
       ),
       actions: [
@@ -35,7 +35,7 @@ class _TVShowsPageState extends State<TVShowsPage> {
               width: 26, height: 26, fit: BoxFit.cover),
           onPressed: () {
             Navigator.push(
-                context, MaterialPageRoute(builder: (_) => Profile()));
+                context, MaterialPageRoute(builder: (_) => ProfilePage()));
           },
         )
       ],

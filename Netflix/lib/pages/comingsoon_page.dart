@@ -35,7 +35,7 @@ class _ComingSoonPageState extends State<ComingSoonPage> {
               width: 26, height: 26, fit: BoxFit.cover),
           onPressed: () {
             Navigator.push(
-                context, MaterialPageRoute(builder: (_) => Profile()));
+                context, MaterialPageRoute(builder: (_) => ProfilePage()));
           },
         )
       ],

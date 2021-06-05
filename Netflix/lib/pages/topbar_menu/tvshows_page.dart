@@ -1,19 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/json/home_json.dart';
-import 'package:flutter_auth/pages/profile_page.dart';
 import 'package:flutter_auth/json/mylist_json.dart';
-import 'package:flutter_auth/pages/tvshows_page.dart';
+import 'package:flutter_auth/pages/profile_page.dart';
 import 'package:flutter_auth/pages/video_detail_page.dart';
-import 'package:flutter_auth/pages/video_player_page.dart';
 
-import 'mylist_page.dart';
+import '../video_player_page.dart';
+import 'dropdown_button/list_item.dart';
 
-class MoviePage extends StatefulWidget {
+class TVShowsPage extends StatefulWidget {
   @override
-  _MoviePageState createState() => _MoviePageState();
+  _TVShowsPageState createState() => _TVShowsPageState();
 }
 
-class _MoviePageState extends State<MoviePage> {
+class _TVShowsPageState extends State<TVShowsPage> {
+  List<ListItem> _dropdownItems = [
+    ListItem(1, "All Genres"),
+    ListItem(2, "Comedy"),
+    ListItem(3, "From Europe"),
+    ListItem(4, "From Asia")
+  ];
+
+  List<DropdownMenuItem<ListItem>> _dropdownMenuItems;
+  ListItem _selectedItem;
+
+  void initState() {
+    super.initState();
+    _dropdownMenuItems = buildDropDownMenuItems(_dropdownItems);
+    _selectedItem = _dropdownMenuItems[0].value;
+  }
+
+  List<DropdownMenuItem<ListItem>> buildDropDownMenuItems(List listItems) {
+    List<DropdownMenuItem<ListItem>> items = List();
+    for (ListItem listItem in listItems) {
+      items.add(
+        DropdownMenuItem(
+          child: Text(listItem.name),
+          value: listItem,
+        ),
+      );
+    }
+    return items;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +58,7 @@ class _MoviePageState extends State<MoviePage> {
       backgroundColor: Colors.black,
       elevation: 0,
       title: Text(
-        "Movie",
+        "TV Show",
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
       ),
       actions: [
@@ -39,7 +67,7 @@ class _MoviePageState extends State<MoviePage> {
               width: 26, height: 26, fit: BoxFit.cover),
           onPressed: () {
             Navigator.push(
-                context, MaterialPageRoute(builder: (_) => Profile()));
+                context, MaterialPageRoute(builder: (_) => ProfilePage()));
           },
         )
       ],
@@ -48,7 +76,6 @@ class _MoviePageState extends State<MoviePage> {
 
   Widget getBody() {
     var size = MediaQuery.of(context).size;
-    int _value = 1;
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       //ทำการเลื่อนได้
@@ -351,12 +378,24 @@ class _MoviePageState extends State<MoviePage> {
                                       ),
                                     );
                                   },
-                                  child: (Text(
-                                    trendingList[index]["ranking"],
-                                    style: TextStyle(
-                                        fontSize: 50,
-                                        fontWeight: FontWeight.bold),
-                                  )),
+                                  child: Stack(
+                                    children: [
+                                      Text(
+                                        trendingList[index]["ranking"],
+                                        style: TextStyle(
+                                            fontSize: 55,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black),
+                                      ),
+                                      Text(
+                                        trendingList[index]["ranking"],
+                                        style: TextStyle(
+                                            fontSize: 47,
+                                            fontWeight: FontWeight.w600,
+                                            color: Colors.white),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                                 decoration: BoxDecoration(
                                   color: Colors.green,
@@ -439,47 +478,34 @@ class _MoviePageState extends State<MoviePage> {
                     //ปุ่มต่างๆ แถบข้างบน
                     SizedBox(height: 10), //จัดการช่องว่างข้างบน
 
-                    SizedBox(
-                      height: 15,
-                    ),
                     //แถบเมนูชื่อ
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        (DropdownButton(
-                            value: _value,
-                            items: [
-                              DropdownMenuItem(
-                                child: Text("First Item"),
-                                value: 1,
-                              ),
-                              DropdownMenuItem(
-                                child: Text("Second Item"),
-                                value: 2,
-                              ),
-                              DropdownMenuItem(
-                                  child: Text("Third Item"), value: 3),
-                              DropdownMenuItem(
-                                  child: Text("Fourth Item"), value: 4)
-                            ],
-                            onChanged: (value) {
-                              setState(() {
-                                _value = value;
-                              });
-                            })),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (_) => MoviePage()));
-                          },
-                          child: Text(
-                            "Movies",
-                            style: TextStyle(
-                                fontSize: 15,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500),
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            padding:
+                                const EdgeInsets.only(left: 10.0, right: 10.0),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.0),
+                              color: Colors.black.withOpacity(0.5),
+                              //border: Border.all()
+                            ),
+                            child: DropdownButtonHideUnderline(
+                              child: DropdownButton(
+                                  value: _selectedItem,
+                                  items: _dropdownMenuItems,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _selectedItem = value;
+                                    });
+                                  }),
+                            ),
                           ),
                         ),
+
+                        //Text("You select ${_selectedItem.name}"),
                       ],
                     ),
                   ],
