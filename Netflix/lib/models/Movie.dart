@@ -125,3 +125,35 @@ class Actor {
         "name": name,
       };
 }
+
+class MovieEpisode {
+  MovieEpisode({
+    this.idEpisode,
+    this.name,
+    this.noEpisode,
+    this.description,
+    this.idSeason,
+  });
+
+  int idEpisode;
+  String name;
+  int noEpisode;
+  String description;
+  int idSeason;
+
+  factory MovieEpisode.fromJson(Map<String, dynamic> json) => MovieEpisode(
+        idEpisode: json["id_episode"],
+        name: json["name"],
+        noEpisode: json["no_episode"],
+        description: json["description"],
+        idSeason: json["id_season"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id_episode": idEpisode,
+        "name": name,
+        "no_episode": noEpisode,
+        "description": description,
+        "id_season": idSeason,
+      };
+}
