@@ -1,8 +1,8 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/Welcome/welcome_screen.dart';
 import 'package:flutter_auth/json/profile.dart';
 import 'package:flutter_auth/pages/profile_user.dart';
+import 'package:flutter_auth/pages/root_app.dart';
 import 'package:flutter_auth/pages/topbar_menu/dropdown_button/test.dart';
 import 'package:flutter_auth/pages/viewer/select_viewer.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -28,13 +28,9 @@ final List<Icon> icons = [
     Icons.account_circle_outlined,
     color: Colors.white,
   ),
-  Icon(
-    Icons.logout,
-    color: Colors.white,
-  )
 ];
 
-final List<String> menu = ['My List', 'App Settings', 'Account', 'Sign Out'];
+final List<String> menu = ['My List', 'App Settings', 'Account'];
 final List link = [
   MylistPage(),
   DropDownButton(),
@@ -107,7 +103,8 @@ class _ProfilePageState extends State<ProfilePage> {
                   },
                   onCompleted: (value) {
                     if (value == "1234") {
-                      Navigator.of(context).pop();
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (_) => RootApp()));
                     } else {
                       Navigator.of(context).pop();
                       createAlertDialog(context, true);
@@ -270,6 +267,202 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ),
             ),
+            Container(
+              color: Colors.grey.withOpacity(0.1),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (_) => WelcomeScreen()));
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.logout,
+                                color: Colors.white,
+                              ),
+                              SizedBox(
+                                width: 8,
+                              ),
+                              Text(
+                                "Sign Out",
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          child: Icon(
+                            Icons.arrow_forward_ios_outlined,
+                            size: 14,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+
+            // GestureDetector(
+            //   onTap: () {
+            //     Navigator.push(
+            //         context, MaterialPageRoute(builder: (_) => MylistPage()));
+            //   },
+            //   child: Padding(
+            //     padding: const EdgeInsets.only(left: 10),
+            //     child: Row(
+            //       mainAxisAlignment: MainAxisAlignment.start,
+            //       children: [
+            //         Container(
+            //           child: Icon(
+            //             Icons.check,
+            //             color: Colors.white,
+            //             size: 19,
+            //           ),
+            //         ),
+            //         SizedBox(
+            //           width: 8,
+            //         ),
+            //         Container(
+            //           child: Text(
+            //             "My List",
+            //             style: TextStyle(
+            //                 fontSize: 20, fontWeight: FontWeight.bold),
+            //           ),
+            //           decoration: BoxDecoration(
+            //               //border: Border(
+            //               //  bottom: BorderSide(width: 3, color: Colors.grey),
+            //               //),
+            //               ),
+            //         ),
+            //       ],
+            //     ),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 15,
+            // ),
+            // GestureDetector(
+            //   onTap: () {
+            //     Navigator.push(context,
+            //         MaterialPageRoute(builder: (_) => EditProfilePage()));
+            //   },
+            //   child: Padding(
+            //     padding: const EdgeInsets.only(left: 10),
+            //     child: Row(
+            //       mainAxisAlignment: MainAxisAlignment.start,
+            //       children: [
+            //         Container(
+            //           child: Text(
+            //             "• Setting",
+            //             style: TextStyle(
+            //                 fontSize: 20, fontWeight: FontWeight.w600),
+            //           ),
+            //           decoration: BoxDecoration(
+            //               //border: Border(
+            //               //  bottom: BorderSide(width: 3, color: Colors.grey),
+            //               //),
+            //               ),
+            //         ),
+            //       ],
+            //     ),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 10,
+            // ),
+            // GestureDetector(
+            //   onTap: () {
+            //     Navigator.push(context,
+            //         MaterialPageRoute(builder: (_) => ProfileUserPage()));
+            //   },
+            //   child: Padding(
+            //     padding: const EdgeInsets.only(left: 10),
+            //     child: Row(
+            //       mainAxisAlignment: MainAxisAlignment.start,
+            //       children: [
+            //         Container(
+            //           child: Text(
+            //             "• Account",
+            //             style: TextStyle(
+            //                 fontSize: 20, fontWeight: FontWeight.bold),
+            //           ),
+            //           decoration: BoxDecoration(),
+            //         ),
+            //       ],
+            //     ),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 10,
+            // ),
+            // GestureDetector(
+            //   onTap: () {
+            //     Navigator.push(
+            //         context, MaterialPageRoute(builder: (_) => MylistPage()));
+            //   },
+            //   child: Padding(
+            //     padding: const EdgeInsets.only(left: 10),
+            //     child: Row(
+            //       mainAxisAlignment: MainAxisAlignment.start,
+            //       children: [
+            //         Container(
+            //           child: Text(
+            //             "• Help",
+            //             style: TextStyle(
+            //                 fontSize: 20, fontWeight: FontWeight.bold),
+            //           ),
+            //           decoration: BoxDecoration(
+            //               //border: Border(
+            //               //  bottom: BorderSide(width: 3, color: Colors.grey),
+            //               //),
+            //               ),
+            //         ),
+            //       ],
+            //     ),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 10,
+            // ),
+            // GestureDetector(
+            //   onTap: () {
+            //     Navigator.push(
+            //         context, MaterialPageRoute(builder: (_) => MylistPage()));
+            //   },
+            //   child: Padding(
+            //     padding: const EdgeInsets.only(left: 10),
+            //     child: Row(
+            //       mainAxisAlignment: MainAxisAlignment.start,
+            //       children: [
+            //         Container(
+            //           child: Text(
+            //             "• Log out",
+            //             style: TextStyle(
+            //                 fontSize: 20, fontWeight: FontWeight.bold),
+            //           ),
+            //           decoration: BoxDecoration(
+            //               //border: Border(
+            //               //  bottom: BorderSide(width: 3, color: Colors.grey),
+            //               //),
+            //               ),
+            //         ),
+            //       ],
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),
