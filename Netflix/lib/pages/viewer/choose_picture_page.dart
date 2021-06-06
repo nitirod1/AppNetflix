@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_auth/json/choose_picture_json.dart';
 import 'package:flutter_auth/json/home_json.dart';
 import 'package:flutter_auth/json/profile.dart';
+import 'package:flutter_auth/pages/edit_profile_page.dart';
 
 import '../video_detail_page.dart';
 
@@ -60,7 +61,12 @@ class _ChoosePicturePageState extends State<ChoosePicturePage> {
                             children: List.generate(
                               lovealarmPicture.length,
                               (index) => GestureDetector(
-                                onTap: () {},
+                                onTap: () {
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (_) => EditProfilePage()));
+                                },
                                 child: Container(
                                   margin: EdgeInsets.only(right: 8),
                                   decoration: BoxDecoration(

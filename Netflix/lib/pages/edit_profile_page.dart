@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/json/profile.dart';
-import 'package:flutter_auth/pages/video_detail_page.dart';
 import 'package:flutter_auth/pages/viewer/choose_picture_page.dart';
 
 class EditProfilePage extends StatefulWidget {
@@ -30,7 +29,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
       ),
       actions: [
         GestureDetector(
-          onTap: () {},
+          onTap: () {
+            print("SAVE");
+          },
           child: Padding(
             padding: const EdgeInsets.only(right: 15, top: 5),
             child: Center(
@@ -59,52 +60,42 @@ class _EditProfilePageState extends State<EditProfilePage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Stack(
-                children: [
-                  Center(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.green,
-                        image: DecorationImage(
-                          image: AssetImage(profileData[0]['img']),
-                          fit: BoxFit.cover,
-                        ),
-                        borderRadius: BorderRadius.circular(6),
-                      ),
-                      alignment: Alignment.bottomRight,
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (_) => ChoosePicturePage()));
-                        },
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (_) => ChoosePicturePage()));
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(6),
-                            ),
-                            child: Icon(
-                              Icons.edit,
-                              color: Colors.black,
-                            ),
-                            width: 30,
-                            height: 30,
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (_) => ChoosePicturePage()));
+                },
+                child: Stack(
+                  children: [
+                    Center(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.green,
+                          image: DecorationImage(
+                            image: AssetImage(profileData[0]['img']),
+                            fit: BoxFit.cover,
                           ),
+                          borderRadius: BorderRadius.circular(6),
                         ),
+                        alignment: Alignment.bottomRight,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                          child: Icon(
+                            Icons.edit,
+                            color: Colors.black,
+                          ),
+                          width: 30,
+                          height: 30,
+                        ),
+                        width: 120,
+                        height: 120,
                       ),
-                      width: 120,
-                      height: 120,
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),
