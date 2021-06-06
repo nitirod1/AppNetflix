@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/json/profile.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class EditProfilePage extends StatefulWidget {
