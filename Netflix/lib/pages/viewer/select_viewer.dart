@@ -71,22 +71,9 @@ class _SelectViewerPageState extends State<SelectViewerPage> {
                       viewers.length,
                       (index) => Container(
                         child: GestureDetector(
-                          onTap: () {
-                            // if (viewers[index].pinNumber == "") {
-                            //   Navigator.pushAndRemoveUntil(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //       builder: (context) => RootApp(
-                            //         viewer: viewers[index].idViewer,
-                            //         isKid: viewers[index].isKid,
-                            //       ),
-                            //     ),
-                            //     (Route<dynamic> route) => false,
-                            //   );
-                            // }
-                            // getDialog(viewers[index]);
-                            showPinNumberDialog(context, false, viewers[index]);
-                            print('done');
+                          onTap: () async {
+                            await showPinNumberDialog(
+                                context, false, viewers[index]);
                           },
                         ),
                         decoration: BoxDecoration(
@@ -213,81 +200,6 @@ class _SelectViewerPageState extends State<SelectViewerPage> {
           );
         });
   }
-
-  // Future<void> getDialog(Viewer viewer) async {
-  //   var incorrect = false;
-  //   if (viewer.pinNumber == "") {
-  //     return Navigator.pushAndRemoveUntil(
-  //       context,
-  //       MaterialPageRoute(
-  //         builder: (context) => RootApp(
-  //           viewer: viewer.idViewer,
-  //           isKid: viewer.isKid,
-  //         ),
-  //       ),
-  //       (Route<dynamic> route) => false,
-  //     );
-  // } else {
-  //   return showDialog(
-  //     context: context,
-  //     builder: (context) {
-  //       return AlertDialog(
-  //         title: Text(
-  //           incorrect
-  //               ? "Incorrect PIN. Please try again."
-  //               : "Enter your PIN to access this profile.",
-  //           textAlign: TextAlign.center,
-  //           style: TextStyle(fontSize: 16),
-  //         ),
-  //         content: Wrap(
-  //           children: [
-  //             PinCodeTextField(
-  //               obscureText: true,
-  //               obscuringCharacter: '*',
-  //               animationType: AnimationType.fade,
-  //               blinkWhenObscuring: true,
-  //               enablePinAutofill: true,
-  //               appContext: context,
-  //               keyboardType: TextInputType.number,
-  //               length: 4,
-  //               onChanged: (value) {},
-  //               onCompleted: (value) {
-  //                 if (value == viewer.pinNumber) {
-  //                   Navigator.of(context).pop();
-  //                   Navigator.pushAndRemoveUntil(
-  //                     context,
-  //                     MaterialPageRoute(
-  //                       builder: (context) => RootApp(
-  //                         viewer: viewer.idViewer,
-  //                         isKid: viewer.isKid,
-  //                       ),
-  //                     ),
-  //                     (Route<dynamic> route) => false,
-  //                   );
-  //                 } else {
-  //                   Navigator.of(context).pop();
-  //                 }
-  //               },
-  //             ),
-  //             SizedBox(
-  //               height: 70,
-  //             ),
-  //             Text("Forget PIN?", textAlign: TextAlign.center),
-  //           ],
-  //         ),
-  //         actions: [
-  //           TextButton(
-  //               onPressed: () {
-  //                 Navigator.of(context).pop();
-  //               },
-  //               child: Text("Cancel"))
-  //         ],
-  //       );
-  //     },
-  //   );
-  // }
-  // }
-  // }
 }
 
 Future<void> getViewer() async {
@@ -308,8 +220,29 @@ Future<void> getViewer() async {
 
     return viewers;
   } catch (e) {
+    if (e.error == "Http status error [401]") {
+      reBill();
+      return getViewer();
+    }
     print(e);
+
     return viewers;
+  }
+}
+
+Future<void> reBill() async {
+  String token = await getEmailFromToken();
+  try {
+    var dio = Dio();
+    var response = await dio.get(
+        "https://netflix-cpe231.herokuapp.com/user/payment/rebill",
+        options: Options(headers: {
+          'Authorization': 'Bearer $token',
+        }));
+
+    return;
+  } catch (e) {
+    return;
   }
 }
 

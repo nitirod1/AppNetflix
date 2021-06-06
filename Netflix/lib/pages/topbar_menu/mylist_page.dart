@@ -1,10 +1,16 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/json/home_json.dart';
-import 'package:flutter_auth/json/mylist_json.dart';
+import 'package:flutter_auth/models/Movie.dart';
 import 'package:flutter_auth/pages/profile_page.dart';
-import 'package:flutter_auth/pages/video_detail_page.dart';
+
+import '../home_page.dart';
+import '../video_detail_page.dart';
 
 class MylistPage extends StatefulWidget {
+  final int viewer;
+
+  const MylistPage({Key key, this.viewer}) : super(key: key);
+
   @override
   _MylistPageState createState() => _MylistPageState();
 }
@@ -43,37 +49,66 @@ class _MylistPageState extends State<MylistPage> {
   }
 
   Widget getBody() {
-    var size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.black,
       body: SafeArea(
-        child: GridView.count(
-          crossAxisCount: 3,
-          crossAxisSpacing: 7,
-          mainAxisSpacing: 5,
-          childAspectRatio: 0.7,
-          children: List.generate(
-            mylistTest.length,
-            (index) => Container(
-              child: GestureDetector(
-                onTap: () {},
-              ),
-              decoration: BoxDecoration(
-                color: Colors.green,
-                image: DecorationImage(
-                  image: AssetImage(mylistTest[index]['img']),
-                  fit: BoxFit.cover,
+        child: FutureBuilder(
+          future: getMovieMyList(widget.viewer),
+          builder: (context, snapshot) {
+            return GridView.count(
+              crossAxisCount: 3,
+              crossAxisSpacing: 7,
+              mainAxisSpacing: 5,
+              childAspectRatio: 0.7,
+              children: List.generate(
+                snapshot.data.length,
+                (index) => Container(
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => VideoDetailPage(
+                            idMovie: snapshot.data[index].idMovie,
+                          ),
+                        ),
+                      );
+                    },
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(6),
+                      child: Image.network(snapshot.data[index].posterUrl,
+                          fit: BoxFit.cover),
+                    ),
+                  ),
                 ),
-                borderRadius: BorderRadius.circular(6),
               ),
-              //width: 50,
-              //height: 50,
-              //color: Colors.red,
-              // child: Text("$index"),
-            ),
-          ),
+            );
+          },
         ),
       ),
     );
+  }
+}
+
+Future<List<dynamic>> getMovieMyList(int viewer) async {
+  String token = await getViewerToken(viewer);
+  var listMovie = [];
+  try {
+    var dio = Dio();
+    var response = await dio.get(
+      "https://netflix-cpe231.herokuapp.com/browse/mylist",
+      options: Options(headers: {
+        'Authorization': 'Bearer $token',
+      }),
+    );
+
+    for (int i = 0; i < response.data.length; i++) {
+      // viewers.add(Viewer.fromJson(response.data[i]));
+      listMovie.add(Movie.fromJson(response.data[i]));
+    }
+    return listMovie;
+  } catch (e) {
+    print(e);
+    return listMovie;
   }
 }

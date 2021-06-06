@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/Screens/Welcome/welcome_screen.dart';
 import 'package:flutter_auth/json/profile.dart';
 import 'package:flutter_auth/pages/profile_user.dart';
 import 'package:flutter_auth/pages/topbar_menu/dropdown_button/test.dart';
@@ -38,7 +39,7 @@ final List link = [
   MylistPage(),
   DropDownButton(),
   SelectViewerPage(),
-  MylistPage(),
+  WelcomeScreen()
 ];
 
 class ProfilePage extends StatefulWidget {
@@ -269,155 +270,6 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ),
             ),
-
-            // GestureDetector(
-            //   onTap: () {
-            //     Navigator.push(
-            //         context, MaterialPageRoute(builder: (_) => MylistPage()));
-            //   },
-            //   child: Padding(
-            //     padding: const EdgeInsets.only(left: 10),
-            //     child: Row(
-            //       mainAxisAlignment: MainAxisAlignment.start,
-            //       children: [
-            //         Container(
-            //           child: Icon(
-            //             Icons.check,
-            //             color: Colors.white,
-            //             size: 19,
-            //           ),
-            //         ),
-            //         SizedBox(
-            //           width: 8,
-            //         ),
-            //         Container(
-            //           child: Text(
-            //             "My List",
-            //             style: TextStyle(
-            //                 fontSize: 20, fontWeight: FontWeight.bold),
-            //           ),
-            //           decoration: BoxDecoration(
-            //               //border: Border(
-            //               //  bottom: BorderSide(width: 3, color: Colors.grey),
-            //               //),
-            //               ),
-            //         ),
-            //       ],
-            //     ),
-            //   ),
-            // ),
-            // SizedBox(
-            //   height: 15,
-            // ),
-            // GestureDetector(
-            //   onTap: () {
-            //     Navigator.push(context,
-            //         MaterialPageRoute(builder: (_) => EditProfilePage()));
-            //   },
-            //   child: Padding(
-            //     padding: const EdgeInsets.only(left: 10),
-            //     child: Row(
-            //       mainAxisAlignment: MainAxisAlignment.start,
-            //       children: [
-            //         Container(
-            //           child: Text(
-            //             "• Setting",
-            //             style: TextStyle(
-            //                 fontSize: 20, fontWeight: FontWeight.w600),
-            //           ),
-            //           decoration: BoxDecoration(
-            //               //border: Border(
-            //               //  bottom: BorderSide(width: 3, color: Colors.grey),
-            //               //),
-            //               ),
-            //         ),
-            //       ],
-            //     ),
-            //   ),
-            // ),
-            // SizedBox(
-            //   height: 10,
-            // ),
-            // GestureDetector(
-            //   onTap: () {
-            //     Navigator.push(context,
-            //         MaterialPageRoute(builder: (_) => ProfileUserPage()));
-            //   },
-            //   child: Padding(
-            //     padding: const EdgeInsets.only(left: 10),
-            //     child: Row(
-            //       mainAxisAlignment: MainAxisAlignment.start,
-            //       children: [
-            //         Container(
-            //           child: Text(
-            //             "• Account",
-            //             style: TextStyle(
-            //                 fontSize: 20, fontWeight: FontWeight.bold),
-            //           ),
-            //           decoration: BoxDecoration(),
-            //         ),
-            //       ],
-            //     ),
-            //   ),
-            // ),
-            // SizedBox(
-            //   height: 10,
-            // ),
-            // GestureDetector(
-            //   onTap: () {
-            //     Navigator.push(
-            //         context, MaterialPageRoute(builder: (_) => MylistPage()));
-            //   },
-            //   child: Padding(
-            //     padding: const EdgeInsets.only(left: 10),
-            //     child: Row(
-            //       mainAxisAlignment: MainAxisAlignment.start,
-            //       children: [
-            //         Container(
-            //           child: Text(
-            //             "• Help",
-            //             style: TextStyle(
-            //                 fontSize: 20, fontWeight: FontWeight.bold),
-            //           ),
-            //           decoration: BoxDecoration(
-            //               //border: Border(
-            //               //  bottom: BorderSide(width: 3, color: Colors.grey),
-            //               //),
-            //               ),
-            //         ),
-            //       ],
-            //     ),
-            //   ),
-            // ),
-            // SizedBox(
-            //   height: 10,
-            // ),
-            // GestureDetector(
-            //   onTap: () {
-            //     Navigator.push(
-            //         context, MaterialPageRoute(builder: (_) => MylistPage()));
-            //   },
-            //   child: Padding(
-            //     padding: const EdgeInsets.only(left: 10),
-            //     child: Row(
-            //       mainAxisAlignment: MainAxisAlignment.start,
-            //       children: [
-            //         Container(
-            //           child: Text(
-            //             "• Log out",
-            //             style: TextStyle(
-            //                 fontSize: 20, fontWeight: FontWeight.bold),
-            //           ),
-            //           decoration: BoxDecoration(
-            //               //border: Border(
-            //               //  bottom: BorderSide(width: 3, color: Colors.grey),
-            //               //),
-            //               ),
-            //         ),
-            //       ],
-            //     ),
-            //   ),
-            // ),
           ],
         ),
       ),

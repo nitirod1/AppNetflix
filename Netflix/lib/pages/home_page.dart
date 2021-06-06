@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/json/home_json.dart';
 import 'package:flutter_auth/models/Movie.dart';
 import 'package:flutter_auth/models/MovieHistory.dart';
 import 'package:flutter_auth/pages/topbar_menu/movie_page.dart';
@@ -10,6 +9,8 @@ import 'package:flutter_auth/pages/topbar_menu/tvshows_page.dart';
 import 'package:flutter_auth/pages/video_detail_page.dart';
 import 'package:flutter_auth/pages/video_player_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+int idMovieBanner;
 
 class HomePage extends StatefulWidget {
   final int viewer;
@@ -44,163 +45,106 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Stack(children: [
-                    Container(
-                      height: 500,
-                      decoration: BoxDecoration(
-                          color: Colors.green,
-                          image: DecorationImage(
-                            image: AssetImage(
-                                "assets/images/banner_1.webp"), //ใส่รูป banner หนัง
-                            fit: BoxFit.cover,
-                          )),
-                    ),
-                    //กล่องจัดการเกี่ยวกับความชัดของพื้นหลัง
-                    Container(
-                      height: 500,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            Colors.black.withOpacity(0.85),
-                            Colors.black.withOpacity(0),
-                          ],
-                          end: Alignment.topCenter,
-                          begin: Alignment.bottomCenter,
-                        ),
-                      ),
-                    ),
-                    //ใส่ชื่อเรื่อง
-                    Container(
-                      height: 500,
-                      width: size.width,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            "assets/images/title_img_1.webp",
-                            width: 300,
-                          ),
-                          SizedBox(
-                            height: 15,
-                          ),
-                          Text(
-                            "Exciting - Scifi - Drama - Scifi Adventure",
-                            style: TextStyle(
-                              fontSize: 11,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ]),
-                  SizedBox(height: 15),
-                  RowFirstMovie(context: context),
-                  SizedBox(
-                    height: 40,
-                  ),
-                  //ทำแถบหนังแต่ละเรื่องข้างล่าง เช่น netflix
+                  buildBannerMovie(size, widget.viewer),
                   buildGenresMovie(1, widget.viewer),
                   buildMyList(widget.viewer),
                   buildHistory(1, widget.viewer),
                 ],
               ),
             ),
-            //containner อีกกล่อง
-            Container(
-              child: SafeArea(
-                child: Column(
+            buildAppBar(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildAppBar() {
+    return Container(
+      child: SafeArea(
+        child: Column(
+          children: [
+            //ปุ่มต่างๆ แถบข้างบน
+            SizedBox(height: 10), //จัดการช่องว่างข้างบน
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Image.asset(
+                    "assets/images/logo.ico", //ทำการใส่ icon
+                    width: 35,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                Row(
                   children: [
-                    //ปุ่มต่างๆ แถบข้างบน
-                    SizedBox(height: 10), //จัดการช่องว่างข้างบน
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: Image.asset(
-                            "assets/images/logo.ico", //ทำการใส่ icon
-                            width: 35,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            IconButton(
-                              icon: Image.asset(
-                                "assets/images/test1.jpg", //หน้าโปรไฟล์
-                                width: 26,
-                                height: 26,
-                                fit: BoxFit.cover,
-                              ),
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (_) => ProfilePage()));
-                              },
-                            ),
-                            //เชื่อมไปหน้าโปรไฟล์
-                          ],
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    //แถบเมนูชื่อ
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (_) => TVShowsPage()));
-                          },
-                          child: Text(
-                            "TV Shows",
-                            style: TextStyle(
-                                fontSize: 15,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500),
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (_) => MoviePage()));
-                          },
-                          child: Text(
-                            "Movies",
-                            style: TextStyle(
-                                fontSize: 15,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500),
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (_) => MylistPage()));
-                          },
-                          child: Text(
-                            "My List",
-                            style: TextStyle(
-                                fontSize: 15,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500),
-                          ),
-                        ),
-                      ],
+                    IconButton(
+                      icon: Image.asset(
+                        "assets/images/test1.jpg", //หน้าโปรไฟล์
+                        width: 26,
+                        height: 26,
+                        fit: BoxFit.cover,
+                      ),
+                      onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (_) => ProfilePage()));
+                      },
                     ),
                   ],
+                )
+              ],
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => TVShowsPage()));
+                  },
+                  child: Text(
+                    "TV Shows",
+                    style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500),
+                  ),
                 ),
-              ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => MoviePage()));
+                  },
+                  child: Text(
+                    "Movies",
+                    style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) => MylistPage(
+                                  viewer: widget.viewer,
+                                )));
+                  },
+                  child: Text(
+                    "My List",
+                    style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
@@ -229,7 +173,6 @@ class _HomePageState extends State<HomePage> {
           SizedBox(
             height: 8,
           ),
-          //แถบเรื่องของหนัง "Hit on netflix"
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Padding(
@@ -304,22 +247,22 @@ class _HomePageState extends State<HomePage> {
                         width: 110,
                         height: 160,
                         child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (_) => VideoDetailPage(
-                                    idMovie: snapshot.data[index].idMovie,
-                                  ),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => VideoDetailPage(
+                                  idMovie: snapshot.data[index].idMovie,
                                 ),
-                              );
-                            },
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(6),
-                              child: Image.network(
-                                  snapshot.data[index].posterUrl,
-                                  fit: BoxFit.cover),
-                            )),
+                              ),
+                            );
+                          },
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(6),
+                            child: Image.network(snapshot.data[index].posterUrl,
+                                fit: BoxFit.cover),
+                          ),
+                        ),
                       );
                     })),
                   ),
@@ -388,104 +331,164 @@ class _HomePageState extends State<HomePage> {
       },
     );
   }
-}
 
-class RowFirstMovie extends StatelessWidget {
-  const RowFirstMovie({
-    Key key,
-    @required this.context,
-  }) : super(key: key);
-
-  final BuildContext context;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-        //แถวปุ่มของหนัง
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          //ทำปุ่ม my list
-          GestureDetector(
-            onTap: () {},
-            child: Column(
-              children: [
-                Icon(
-                  Icons.add,
-                  color: Colors.white,
-                  size: 25,
-                ),
-                SizedBox(height: 5),
-                Text(
-                  "My List",
-                  style: TextStyle(
-                      fontWeight: FontWeight.w600, color: Colors.white),
-                ),
-              ],
-            ),
-          ),
-          //ทำกล่องปุ่ม play
-          //กดเพื่อเข้าหน้าเล่นรายละเอียดวิดีโอ
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => VideoPlayerPage(
-                      //videoUrl: "assets/videos/video_1.mp4",
-                      ),
-                ),
-              );
-            },
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(4),
+  Widget buildBannerMovie(Size size, int viewer) {
+    return FutureBuilder(
+      future: getBannerMovie(viewer),
+      builder: (context, snapshot) {
+        return Container(
+          height: 500,
+          child: Stack(
+            children: [
+              Image.network(
+                snapshot.data.posterUrl,
+                fit: BoxFit.cover,
+                height: 500,
+                width: size.width,
               ),
-              child: Padding(
-                padding: const EdgeInsets.only(
-                    right: 13, left: 8, top: 2, bottom: 2),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.play_arrow,
-                      color: Colors.black,
-                      size: 30,
+              Column(
+                children: [
+                  Container(
+                    height: 100,
+                  ),
+                  Container(
+                    alignment: Alignment.bottomCenter,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: <Color>[Colors.black, Colors.black],
+                      ),
                     ),
-                    SizedBox(
-                      width: 5,
+                  ),
+                ],
+              ),
+              Container(
+                child: Column(
+                  children: [
+                    Container(
+                      height: 420,
                     ),
                     Text(
-                      "Play",
+                      getGenresString(snapshot.data.genres),
                       style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
+                        fontSize: 11,
+                        color: Colors.white,
                       ),
                     ),
                   ],
                 ),
               ),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {},
-            child: Column(
-              children: [
-                Icon(
-                  Icons.info_outline,
-                  color: Colors.white,
-                  size: 25,
+              Container(
+                child: Column(
+                  children: [
+                    Container(height: 450),
+                    Container(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          GestureDetector(
+                            onTap: () {},
+                            child: Container(
+                              child: Column(
+                                children: [
+                                  Icon(
+                                    Icons.add,
+                                    color: Colors.white,
+                                    size: 25,
+                                  ),
+                                  SizedBox(height: 5),
+                                  Text(
+                                    "My List",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.white),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => VideoPlayerPage(
+                                      //videoUrl: "assets/videos/video_1.mp4",
+                                      ),
+                                ),
+                              );
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    right: 13, left: 8, top: 2, bottom: 2),
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.play_arrow,
+                                      color: Colors.black,
+                                      size: 30,
+                                    ),
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Text(
+                                      "Play",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => VideoDetailPage(
+                                    idMovie: idMovieBanner,
+                                  ),
+                                ),
+                              );
+                            },
+                            child: Column(
+                              children: [
+                                Icon(
+                                  Icons.info_outline,
+                                  color: Colors.white,
+                                  size: 25,
+                                ),
+                                SizedBox(height: 5),
+                                Text(
+                                  "Info",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.white),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-                SizedBox(height: 5),
-                Text(
-                  "Info",
-                  style: TextStyle(
-                      fontWeight: FontWeight.w600, color: Colors.white),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ]);
+        );
+      },
+    );
   }
 }
 
@@ -577,6 +580,41 @@ Future<List<dynamic>> getMovieMyList(int viewer) async {
     print(e);
     return listMovie;
   }
+}
+
+Future<MovieDetail> getBannerMovie(int viewer) async {
+  String token = await getViewerToken(viewer);
+  MovieDetail movie;
+  try {
+    var dio = Dio();
+    var response = await dio.get(
+      "https://netflix-cpe231.herokuapp.com/browse/banner",
+      options: Options(
+        headers: {
+          'Authorization': 'Bearer $token',
+        },
+      ),
+    );
+
+    movie = MovieDetail.fromJson(response.data);
+    idMovieBanner = movie.idMovie;
+    return movie;
+  } catch (e) {
+    print(e);
+    return movie;
+  }
+}
+
+String getGenresString(List<Actor> genres) {
+  String str = "";
+  int len = genres.length < 4 ? genres.length : 4;
+  for (int i = 0; i < len; i++) {
+    str += genres[i].name;
+    if (len - 1 != i) {
+      str += " - ";
+    }
+  }
+  return str;
 }
 
 // SizedBox(
