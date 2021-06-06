@@ -7,6 +7,7 @@ import 'package:flutter_auth/pages/topbar_menu/dropdown_button/test.dart';
 import 'package:flutter_auth/pages/viewer/select_viewer.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:flutter_auth/pages/topbar_menu/mylist_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // final List<Icon> icon = <Icon>[
 //   Icon(Icons.check),
@@ -271,8 +272,7 @@ class _ProfilePageState extends State<ProfilePage> {
               color: Colors.grey.withOpacity(0.1),
               child: GestureDetector(
                 onTap: () {
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (_) => WelcomeScreen()));
+                  deleteTokenUser();
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(10),
@@ -466,6 +466,16 @@ class _ProfilePageState extends State<ProfilePage> {
           ],
         ),
       ),
+    );
+  }
+
+  Future<void> deleteTokenUser() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.remove('tokenUser');
+    return Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => WelcomeScreen()),
+      (Route<dynamic> route) => false,
     );
   }
 }
