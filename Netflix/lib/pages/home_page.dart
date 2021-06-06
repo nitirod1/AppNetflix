@@ -318,11 +318,39 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               );
                             },
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(6),
-                              child: Image.network(
-                                  snapshot.data[index].posterUrl,
-                                  fit: BoxFit.cover),
+                            child: Stack(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(6),
+                                  child: Image.network(
+                                      snapshot.data[index].posterUrl,
+                                      fit: BoxFit.cover),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(5),
+                                  child: Container(
+                                    alignment: Alignment.bottomRight,
+                                    child: Stack(
+                                      children: [
+                                        Text(
+                                          snapshot.data[index].no.toString(),
+                                          style: TextStyle(
+                                              fontSize: 34,
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(
+                                          snapshot.data[index].no.toString(),
+                                          style: TextStyle(
+                                              fontSize: 32,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                )
+                              ],
                             )),
                       );
                     })),
