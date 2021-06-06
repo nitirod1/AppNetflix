@@ -1,9 +1,5 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/json/choose_picture_json.dart';
 import 'package:flutter_auth/json/home_json.dart';
-import 'package:flutter_auth/json/profile.dart';
-import 'package:flutter_auth/pages/edit_profile_page.dart';
 
 import '../video_detail_page.dart';
 
@@ -19,7 +15,7 @@ class _ChoosePicturePageState extends State<ChoosePicturePage> {
       backgroundColor: Colors.black,
       appBar: getAppbar(),
       //bottomNavigationBar: getFooter(),
-      body: getBody(),
+      //body: getBody(),
     );
   }
 
@@ -30,7 +26,7 @@ class _ChoosePicturePageState extends State<ChoosePicturePage> {
       title: Text(
         "Choose Picture",
         style: TextStyle(
-            fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
+            fontSize: 24, fontWeight: FontWeight.bold, color: Colors.red),
       ),
     );
   }
@@ -38,58 +34,50 @@ class _ChoosePicturePageState extends State<ChoosePicturePage> {
   Widget getBody() {
     return SafeArea(
         child: Column(
-            children: List.generate(
-                categoryPicture.length,
-                (index) => Container(
-                      child: Column(children: [
-                        Padding(
-                          padding: const EdgeInsets.all(6.0),
-                          child: Row(
-                            children: [
-                              Text(
-                                categoryPicture[index]["category"],
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 16),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: List.generate(
-                              lovealarmPicture.length,
-                              (index) => GestureDetector(
-                                onTap: () {
-                                  Navigator.pushReplacement(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (_) => EditProfilePage()));
-                                },
-                                child: Container(
-                                  margin: EdgeInsets.only(right: 8),
-                                  decoration: BoxDecoration(
-                                    color: Colors.green,
-                                    borderRadius: BorderRadius.circular(3),
-                                    image: DecorationImage(
-                                      image: AssetImage(
-                                        lovealarmPicture[index]["img"],
-                                      ),
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                  width: 80,
-                                  height: 80,
-                                ),
-                              ),
+      children: List.generate(
+          4,
+          (index) => Container(
+                child: Column(
+                  children: [
+                    Container(
+                      child: Text(
+                        "Name Picture",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    //แถบเรื่องของหนัง "popularList"
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: Row(
+                            children:
+                                List.generate(popularList.length, (index) {
+                          return Container(
+                            margin: EdgeInsets.only(right: 8),
+                            width: 110,
+                            height: 160,
+                            child: GestureDetector(
+                              onTap: () {},
                             ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                      ]),
-                    ))));
+                            decoration: BoxDecoration(
+                              color: Colors.green,
+                              image: DecorationImage(
+                                image: AssetImage(popularList[index]['img']),
+                                fit: BoxFit.cover,
+                              ),
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                          );
+                        })),
+                      ),
+                    ),
+                  ],
+                ),
+              )),
+    ));
   }
 }
