@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_auth/constants.dart';
 import 'package:flutter_auth/pages/viewer/select_viewer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'Screens/Welcome/welcome_screen.dart';
 
 void main() => runApp(MyApp());

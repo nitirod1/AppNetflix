@@ -86,16 +86,3 @@ class _RootAppState extends State<RootApp> {
     );
   }
 }
-
-/* ทำแถบข้างล่าง
-Icon(
-          items[0]["icon"],
-          color: Colors.white,
-        ),
-        SizedBox(
-          height: 5,
-        ),
-        Text(
-          items[0]["text"],
-        style: TextStyle(color: Colors.white, fontSize: 10),)
-*/

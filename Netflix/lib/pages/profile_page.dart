@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/Screens/Welcome/welcome_screen.dart';
 import 'package:flutter_auth/json/profile.dart';
 import 'package:flutter_auth/pages/profile_user.dart';
+import 'package:flutter_auth/pages/root_app.dart';
 import 'package:flutter_auth/pages/topbar_menu/dropdown_button/test.dart';
 import 'package:flutter_auth/pages/viewer/select_viewer.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -27,18 +29,13 @@ final List<Icon> icons = [
     Icons.account_circle_outlined,
     color: Colors.white,
   ),
-  Icon(
-    Icons.logout,
-    color: Colors.white,
-  )
 ];
 
-final List<String> menu = ['My List', 'App Settings', 'Account', 'Sign Out'];
+final List<String> menu = ['My List', 'App Settings', 'Account'];
 final List link = [
   MylistPage(),
   DropDownButton(),
   SelectViewerPage(),
-  MylistPage(),
 ];
 
 class ProfilePage extends StatefulWidget {
@@ -106,7 +103,8 @@ class _ProfilePageState extends State<ProfilePage> {
                   },
                   onCompleted: (value) {
                     if (value == "1234") {
-                      Navigator.of(context).pop();
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (_) => RootApp()));
                     } else {
                       Navigator.of(context).pop();
                       createAlertDialog(context, true);
@@ -264,6 +262,53 @@ class _ProfilePageState extends State<ProfilePage> {
                           ],
                         ),
                       ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              color: Colors.grey.withOpacity(0.1),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (_) => WelcomeScreen()));
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.logout,
+                                color: Colors.white,
+                              ),
+                              SizedBox(
+                                width: 8,
+                              ),
+                              Text(
+                                "Sign Out",
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          child: Icon(
+                            Icons.arrow_forward_ios_outlined,
+                            size: 14,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
