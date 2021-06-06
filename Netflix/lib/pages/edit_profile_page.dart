@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/json/profile.dart';
 import 'package:flutter_auth/pages/video_detail_page.dart';
+import 'package:flutter_auth/pages/viewer/choose_picture_page.dart';
 
 class EditProfilePage extends StatefulWidget {
   @override
@@ -76,19 +77,27 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (_) => VideoDetailPage()));
+                                  builder: (_) => ChoosePicturePage()));
                         },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(6),
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => ChoosePicturePage()));
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                            child: Icon(
+                              Icons.edit,
+                              color: Colors.black,
+                            ),
+                            width: 30,
+                            height: 30,
                           ),
-                          child: Icon(
-                            Icons.edit,
-                            color: Colors.black,
-                          ),
-                          width: 30,
-                          height: 30,
                         ),
                       ),
                       width: 120,

@@ -476,7 +476,6 @@ class _MoviePageState extends State<MoviePage> {
                   children: [
                     //ปุ่มต่างๆ แถบข้างบน
                     SizedBox(height: 10), //จัดการช่องว่างข้างบน
-
                     //แถบเมนูชื่อ
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -488,7 +487,7 @@ class _MoviePageState extends State<MoviePage> {
                                 const EdgeInsets.only(left: 10.0, right: 10.0),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10.0),
-                              color: Colors.black.withOpacity(0.5),
+                              color: Colors.white.withOpacity(0.5),
                               //border: Border.all()
                             ),
                             child: DropdownButtonHideUnderline(

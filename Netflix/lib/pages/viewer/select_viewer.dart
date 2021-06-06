@@ -65,7 +65,7 @@ class _SelectViewerPageState extends State<SelectViewerPage> {
                       (index) => Container(
                         child: GestureDetector(
                           onTap: () {
-                            Navigator.push(
+                            Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
                                 builder: (_) => RootApp(),
@@ -96,7 +96,7 @@ class _SelectViewerPageState extends State<SelectViewerPage> {
                         (index) => Container(
                           child: GestureDetector(
                             onTap: () {
-                              Navigator.push(
+                              Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
                                   builder: (_) => RootApp(),
