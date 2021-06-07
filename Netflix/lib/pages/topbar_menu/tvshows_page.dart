@@ -57,9 +57,19 @@ class _TVShowsPageState extends State<TVShowsPage> {
     return AppBar(
       backgroundColor: Colors.black,
       elevation: 0,
+      leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+            size: 20,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          }),
       title: Text(
         "TV Show",
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        style: TextStyle(
+            fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
       ),
       actions: [
         IconButton(

@@ -23,6 +23,15 @@ class _SearchPageState extends State<SearchPage> {
     return AppBar(
       backgroundColor: Colors.black,
       elevation: 0,
+      leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+            size: 20,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          }),
       title: Container(
         height: 35,
         width: double.infinity,

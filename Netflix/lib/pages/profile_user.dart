@@ -23,9 +23,19 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
     return AppBar(
       backgroundColor: Colors.black,
       elevation: 0,
+      leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+            size: 20,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          }),
       title: Text(
         "Manage Profiles",
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        style: TextStyle(
+            fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
       ),
     );
   }

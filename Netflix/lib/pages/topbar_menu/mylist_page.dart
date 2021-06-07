@@ -30,10 +30,20 @@ class _MylistPageState extends State<MylistPage> {
   Widget getAppbar() {
     return AppBar(
       backgroundColor: Colors.black,
+      leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+            size: 20,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          }),
       elevation: 0,
       title: Text(
         "My List",
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        style: TextStyle(
+            fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
       ),
       actions: [
         IconButton(

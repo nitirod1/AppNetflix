@@ -9,13 +9,6 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:flutter_auth/pages/topbar_menu/mylist_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-// final List<Icon> icon = <Icon>[
-//   Icon(Icons.check),
-//   Icon(Icons.settings),
-//   Icon(Icons.account_circle_outlined),
-//   Icon(Icons.logout)
-// ];
-
 final List<Icon> icons = [
   Icon(
     Icons.check,
@@ -60,6 +53,15 @@ class _ProfilePageState extends State<ProfilePage> {
     return AppBar(
       backgroundColor: Colors.black,
       elevation: 0,
+      leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+            size: 20,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          }),
       title: Text(
         "Profiles & More",
         style: TextStyle(
