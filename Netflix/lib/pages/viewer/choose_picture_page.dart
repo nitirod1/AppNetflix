@@ -23,10 +23,19 @@ class _ChoosePicturePageState extends State<ChoosePicturePage> {
     return AppBar(
       backgroundColor: Colors.black,
       elevation: 0,
+      leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+            size: 20,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          }),
       title: Text(
         "Choose Picture",
         style: TextStyle(
-            fontSize: 24, fontWeight: FontWeight.bold, color: Colors.red),
+            fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
       ),
     );
   }
