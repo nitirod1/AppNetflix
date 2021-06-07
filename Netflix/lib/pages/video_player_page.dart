@@ -17,7 +17,12 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
       backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: Text("Video Player"),
+        title: Text(
+          "Video Player",
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
       ),
       body: getBody(),
     );

@@ -58,7 +58,8 @@ class _MoviePageState extends State<MoviePage> {
       elevation: 0,
       title: Text(
         "Movie",
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        style: TextStyle(
+            fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
       ),
       actions: [
         IconButton(

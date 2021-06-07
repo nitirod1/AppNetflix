@@ -25,7 +25,8 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
       elevation: 0,
       title: Text(
         "Manage Profiles",
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        style: TextStyle(
+            fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
       ),
     );
   }

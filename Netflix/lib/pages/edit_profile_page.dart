@@ -25,7 +25,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
       elevation: 0,
       title: Text(
         "Edit Profile",
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        style: TextStyle(
+            fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
       ),
       actions: [
         GestureDetector(

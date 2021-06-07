@@ -33,7 +33,8 @@ class _MylistPageState extends State<MylistPage> {
       elevation: 0,
       title: Text(
         "My List",
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        style: TextStyle(
+            fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
       ),
       actions: [
         IconButton(

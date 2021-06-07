@@ -59,7 +59,8 @@ class _TVShowsPageState extends State<TVShowsPage> {
       elevation: 0,
       title: Text(
         "TV Show",
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        style: TextStyle(
+            fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
       ),
       actions: [
         IconButton(
